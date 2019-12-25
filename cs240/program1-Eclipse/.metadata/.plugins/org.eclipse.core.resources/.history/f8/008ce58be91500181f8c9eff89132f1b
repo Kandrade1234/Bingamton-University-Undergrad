@@ -1,0 +1,207 @@
+#include "LinkedList.h"
+using namespace std;
+/////////////Default constructor/////////////////
+List::List(){
+	this->head = NULL;
+	size = 0;
+}
+Node :: ~Node(){
+	//cout<< "Deleteing data......" << endl;
+	delete this->data;
+	//delete next;
+
+}
+/////////////DESTRUCTOR/////////////////////////////////////////////// WORKS
+List :: ~List(){
+	Node * current = head;
+	while(current != NULL){
+		Node * next = current->nlink();
+		cout<<"IM BEING DELETED: " << current->getData()->getID()<< endl;
+		delete current;
+		current = next;
+		size--;
+		cout << "Size: " << size << endl;
+	}
+
+	head = NULL;
+	size = 0;
+	cout << endl << endl;
+
+}
+//////////////////////OVERLOADED OPERATOR <<////////////////////////////
+
+    void List :: operator<<(Ant * b){
+	this->append(b);
+
+   }
+////////////////////COPY CONSTRUCTOR/////////////////////////////WORKS
+List :: List(const List & o){
+
+	head = NULL;
+	size = 0;
+	Node * node = o.head;
+
+	while(node!=NULL){
+		Ant * ant = new Ant(node->getData()->getID());
+		append((ant));
+		node = node->nlink();
+	}
+
+
+}
+///////////////////////INSERTING AT THE END///////////////////////////////////////////WORKS
+void List :: append(Ant * input){
+	//what im adding
+	Node * current = head;
+	if(is_item())
+	{//ptr to help with loop
+		while(current != NULL)
+		{
+			if(current->nlink() == NULL)
+			{
+				Node * append = new Node(input);
+				current->set_nlink(append);
+				current = append;
+				size++;
+				break;
+			}
+			current = current->nlink();
+		}
+	}
+	else{//IF THERES NOTHING IN THE LIST.
+		Node * append = new Node (input, NULL);
+		head = append;
+		current = append;
+		size++;
+		//  cout << "inserting: " << *(current->getData()) << "\n";
+
+	}
+}
+
+////////////////////INSERT AT THE HEAD//////////////////////////////////////////////WORKS
+void List :: insert_head(Ant * input){
+
+	Node * current = head;
+	//if there is an item, insert a new node that points to current node (note: current node has been reseted)
+	if(is_item()){
+		Node * insert = new Node(input, current);
+		head = insert;
+		current = insert;
+		size++;
+	}
+	else {
+		Node * insert = new Node(input, NULL);
+		head = insert;
+		current = insert;
+		size++;
+	}
+}
+
+///////////////////////////Delete At iTH POSITION////////////////////////////////////////////////
+void List::remove(Ant* input)
+{
+
+	if(head == NULL) return;
+	if(input == NULL) return;
+
+	Node * current = head;
+	if(find(input))//making sure the ant exists
+	{
+		if(size == 1){
+			delete current; //frees up variable
+			size--;
+			head = NULL;
+			return;
+		}
+
+		if(current->getData()->getID() == input->getID()){
+			head = current->nlink();
+			delete current;
+			size--;
+			return;
+		}
+		/*WHILE LOOP UNTIL IT IS ONE BEFORE THE NODE TO DELETE*/
+		while(current->nlink()->getData()->getID() != input->getID()){
+			current = current->nlink();
+		}
+		Node * temp2 = current->nlink(); //this is the actual node to delete.
+		current->set_nlink(temp2->nlink()); //attempting to set n-1 to point to n+1 HELPPPP
+		current = temp2->nlink();
+		size--;
+		delete temp2;
+	}
+
+}
+
+/*
+//////Looks to see if its in the list and returns the Ant if not then returns NULL////////////WORKS
+int * List::find(int * num){
+//this->reset();	// resets pointer
+reset();
+while(current != NULL)
+{
+if(*num == *(current->getData())) return current->getData();
+current = current->nlink();
+}
+return NULL;
+}*/
+
+
+bool  List::find(Ant * in){
+	Node * current = head;
+	while(current != NULL)
+	{
+		if(in->getID() == current->getData()->getID()) return true;
+		current = current->nlink();
+	}
+	return false;
+}
+/*
+//returns ID of the Ant which i can then use the remove function to delete the Node
+int List :: find (Ant  input){
+Node * ptr = head;
+while(ptr != NULL){
+if(input.getID() == ptr->getData().getID()) return ptr->getData().getID();
+ptr = ptr->nlink();
+}
+return NULL;
+}
+*/
+
+///////////////////////////PRINTS//////////////////WORKS
+void List::print(){
+	Node * current = head;
+	while(current!=NULL){
+		cout  <<"Ant [" << current->getData()->getID() << "]" << endl;
+		current = current->nlink();
+
+	}
+}
+
+/*
+   bool List::next(){
+   if(current != NULL) {
+   return true;
+   }
+//cout << "in here" <<*(current->getData());
+// if(current == NULL)
+return false;
+}    */              //study this? if true else?
+/////////////////resets current pointer to head.///////////////////////////////NoT WORKING
+/*
+void List::reset(){
+	if(head == NULL)return;
+	else current = head;
+}
+*/
+//////////////Gets what it is currently pointing at//////////WORKS
+/*
+Ant * List::get(){
+	if(head == NULL) return NULL;
+	if(current == NULL){
+		current = head;
+		return NULL;
+	}
+	return current->getData();
+}*/
+

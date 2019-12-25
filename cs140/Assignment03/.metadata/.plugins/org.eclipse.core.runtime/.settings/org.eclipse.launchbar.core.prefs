@@ -1,0 +1,9 @@
+LaunchTargetManager/org.eclipse.launchbar.core.launchTargetType.local,Local/arch=x86_64
+LaunchTargetManager/org.eclipse.launchbar.core.launchTargetType.local,Local/os=macosx
+configDescList=org.eclipse.launchbar.core.descriptorType.default\:NodeList,org.eclipse.launchbar.core.descriptorType.default\:CalendarItem,org.eclipse.launchbar.core.descriptorType.default\:CalendarList
+eclipse.preferences.version=1
+org.eclipse.launchbar.core.descriptorType.default\:CalendarItem/activeLaunchMode=run
+org.eclipse.launchbar.core.descriptorType.default\:CalendarItem/activeLaunchTarget=org.eclipse.launchbar.core.launchTargetType.local\:Local
+org.eclipse.launchbar.core.descriptorType.default\:CalendarList/activeLaunchMode=run
+org.eclipse.launchbar.core.descriptorType.default\:NodeList/activeLaunchMode=run
+org.eclipse.launchbar.core.descriptorType.default\:NodeList/activeLaunchTarget=org.eclipse.launchbar.core.launchTargetType.local\:Local

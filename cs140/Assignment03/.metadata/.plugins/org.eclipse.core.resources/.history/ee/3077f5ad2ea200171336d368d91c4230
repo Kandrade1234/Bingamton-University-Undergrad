@@ -1,0 +1,265 @@
+package assignment03;
+import java.time.LocalDateTime;
+import java.util.Optional;
+
+public class CalendarList {
+    private CalendarItem first;
+    private CalendarItem next;
+    private CalendarItem nowObject = new CalendarItem();    
+
+    public void setNext()
+    {
+    	
+       nowObject.setStart(LocalDateTime.now());
+       nowObject.setEnd(LocalDateTime.now());
+        
+       LocalDateTime now = LocalDateTime.now();
+       CalendarItem temp = first;
+    	while(temp != null && (temp.getEnd().isEqual(now) || temp.getEnd().isBefore(now)) )
+    	{
+    		if(temp.getNextItem() == null)
+    		{
+    			next = temp;
+    			break;
+    		}
+    		temp = temp.getNextItem();
+    		
+    		
+    	}
+    	
+    }
+    
+    
+    
+    public void resetFirst()
+    {
+    	this.setNext();
+    	first = next;
+    
+    	
+    }
+    
+    
+    
+    private void insert(CalendarItem newItem)
+    {
+    	if(first == null)
+    	{	first = newItem;
+    		return;
+    	}
+    	else if(newItem.endsBefore(first))
+    	{
+    		newItem.getNextItem().setNextItem(first);;
+    		first = newItem;
+    	}
+    	else 
+    	{
+    		CalendarItem temp= first;
+    		while (temp.getNextItem()!= null)
+    		{
+    			if (newItem.endsBefore(temp.getNextItem()))
+    			{
+    				newItem.getNextItem().setNextItem(temp.getNextItem());
+    				newItem = temp.getNextItem();
+    				return;
+    			}
+    			temp = temp.getNextItem();
+    		}
+    		temp.setNextItem(newItem);
+    	//	newItem = temp;
+    	}
+    		
+    		
+    }
+    
+    public Optional<CalendarItem> findConflict(CalendarItem newItem)
+    {
+    	
+    	
+    	if (first == null)
+    		return Optional.empty();
+    	
+    	
+    	CalendarItem temp = first;
+    	
+    	while (temp!= null)
+    	{
+    		
+    		if(temp.hasTimeConflictWith(newItem))
+    			return Optional.of(newItem);
+    		temp = temp.getNextItem();
+    	}
+		return Optional.empty();
+
+    }
+    public void insertItem(CalendarItem newItem)
+    {
+    	 nowObject.setStart(LocalDateTime.now());
+         nowObject.setEnd(LocalDateTime.now());
+  
+    	if (first != null)
+    	{
+    		this.setNext();
+    		if(newItem.endsBefore(nowObject))
+    		{
+    			throw new IllegalArgumentException("It is to late for that appointment");
+    		}
+    		if(newItem.getStart().isBefore(LocalDateTime.now()))
+    		{
+    			throw new IllegalArgumentException("That appointment is under way--run!");
+
+    		}
+    			Optional <CalendarItem> temp = findConflict(newItem);
+    		if(temp.isPresent()) {
+    			throw new IllegalArgumentException("You have a conflict. "
+    			+ "Please use findConflict to find the conflicting appointment");
+    		}
+    	}
+    	this.insert(newItem);
+    	
+    	
+    	
+    }
+    
+    void testingInsert(CalendarItem newItem)
+    {
+    	 nowObject.setStart(LocalDateTime.now());
+         nowObject.setEnd(LocalDateTime.now());
+  
+    	if (first != null)
+    	{
+    		this.setNext();
+    			Optional <CalendarItem> temp = findConflict(newItem);
+    		if(temp.isPresent()) {
+    			throw new IllegalArgumentException("You have a conflict. "
+    			+ "Please use findConflict to find the conflicting appointment");
+    		}
+    	}
+    	this.insert(newItem);
+    	
+    	
+    	
+    }
+    public void printNext()
+    {
+    	System.out.println(next);
+    }
+    
+
+    public void printCalendar()
+    {
+    	CalendarItem temp = first;
+    	while (temp!= null)
+    	{
+    		if (temp!= null)
+    			System.out.println(temp);
+    		temp = temp.getNextItem();
+    		
+    		
+    	}
+    	
+    	
+    	
+    }
+    
+	public static void main(String[] args) {
+	
+		CalendarList testing = new CalendarList();
+		CalendarItem ev1 = new CalendarItem();
+		ev1.setDescription("this is just a sample meeting of CS 301");
+		ev1.setEnd(LocalDateTime.of(2017,9,13,11,50));
+		ev1.setStart(LocalDateTime.of(2017,9,12,10,50));
+		ev1.setTitle("CS 301");
+		ev1.setLocation("NB 22");
+		
+		
+		CalendarItem ev2 = new CalendarItem();
+		ev2.setDescription("this is just a sample meeting of CS 240");
+		ev2.setEnd(LocalDateTime.of(2017,11,24,11,50));
+		ev2.setStart(LocalDateTime.of(2017,11,24,10,50));
+		ev2.setTitle("CS 240");
+		ev2.setLocation("FA 122");
+
+		
+		CalendarItem ev3 = new CalendarItem();
+		ev3.setDescription("this is just a sample meeting of CS 140");
+		ev3.setEnd(LocalDateTime.of(2017,9,25,11,50));
+		ev3.setStart(LocalDateTime.of(2017,9,25,10,50));
+		ev3.setTitle("CS 140");
+		ev3.setLocation("FA 212");
+		System.out.println("Testing if we can set an appointment before another appointment.....\n");
+		
+		
+		
+
+		//Inserting
+		testing.insertItem(ev1);
+		testing.insertItem(ev2);
+		
+		try {	
+		
+		testing.insertItem(ev3);
+		
+		} catch (IllegalArgumentException e)
+						{
+							System.out.println(e);
+						}
+				
+		
+	Optional<CalendarItem> test = testing.findConflict(ev3);	
+	
+	if(!test.isPresent())
+		System.out.println("there is conflict");
+	
+	
+	System.out.println("\nPrinting current appointment list.... \n");
+	testing.printCalendar();	
+	
+	
+	
+	CalendarList testing2 = new CalendarList();
+	CalendarItem evN1 = new CalendarItem();
+	evN1.setDescription("this is just a sample meeting of CS 301");
+	evN1.setEnd(LocalDateTime.of(2018,9,13,11,50));
+	evN1.setStart(LocalDateTime.of(2018,9,12,10,50));
+	evN1.setTitle("CS 301");
+	evN1.setLocation("NB 22");
+
+	CalendarItem evN2 = new CalendarItem();
+	evN2.setDescription("this is just a sample meeting of CS 240");
+	evN2.setEnd(LocalDateTime.of(2018,11,24,11,50));
+	evN2.setStart(LocalDateTime.of(2018,11,24,10,50));
+	evN2.setTitle("CS 240");
+	evN2.setLocation("FA 122");
+	
+	
+	CalendarItem evN3 = new CalendarItem();
+	evN3.setDescription("this is just a sample meeting of CS 140");
+	evN3.setEnd(LocalDateTime.of(2018,12,25,11,50));
+	evN3.setStart(LocalDateTime.of(2018,12,25,10,50));
+	evN3.setTitle("CS 140");
+	evN3.setLocation("FA 212");
+	
+	
+	
+	testing2.testingInsert(evN1);
+	testing2.testingInsert(evN2);
+	testing2.testingInsert(evN3);
+
+	
+	testing2.printCalendar();
+	System.out.println("\nPrinting new appointment list.... \n");
+
+	
+	
+	
+	}
+		
+		
+		
+		
+	
+    
+    
+    
+}

@@ -1,0 +1,22 @@
+package exam02;
+
+import java.util.ArrayList;
+
+public class Recursion {
+	public static int collatz(int n){
+		if(n == 1)
+			return 1;
+		if(n % 2 ==0)
+			 return collatz(n + (n/2));
+		else 
+			 return collatz(n + (3*n+1));
+	}
+	/*public static int count(ArrayList<Integer> list, int n){
+		if(list.size() == 1)
+			return 1;
+		if(list.get(index))
+			
+		else 
+			count()
+	}*/
+}

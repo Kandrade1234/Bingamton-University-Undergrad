@@ -1,0 +1,42 @@
+#ifndef LINKEDLIST_H
+#define LINKEDLIST_H
+//#include "Ant.h"
+#include <iostream>
+#include <cstdlib>
+class Node{
+	private:
+		int  data;
+		Node * next;
+
+	public:
+		Node (int  new_int){this->data = new_int; this->next = NULL;}
+		Node(int  new_int, Node * n){this->data =  new_int; this->next = n;}
+       // const Node* nlink( ) const { return next; }
+        Node * nlink( ) { return next; }
+		void set_nlink(Node * new_link){next = new_link;}
+		int * getData(){return &data;}
+};
+class List{
+
+	private:
+		Node * head;
+		//int size; //maybe this is useful to not have to traverse all the time to tell the size
+		Node * current;
+	public:
+		List();//DONE->TESTED
+		List(const List & o );//DONE ->TESTED
+		~List();//DONE
+		void reset();//not woking? ask
+		bool next();//confused->not working
+		void insert_head (int);//DONE->tested
+		void append (int);//DONE->tested
+		void remove_at_pos(int); //Done--->>>>>>TESTED( starts from position 1)-> I CAN SEND AN ANT WITH THE FIND FUNCTION TO FIND IN LINKED LIST AND THEN REMOVE BY USING GETID which is equivalent to pos.
+		int * find(int*); //DONE->tested
+        bool is_item( ) const { return (current != NULL); } //DONE->tested
+	//	void modify(int old, int n_int);
+		void print(); //DONE ->tested
+		int * get(); //DONE ->tested
+		friend std::ostream& operator<<(std::ostream& os, List b);
+};
+
+#endif

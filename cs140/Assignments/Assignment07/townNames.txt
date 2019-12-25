@@ -1,0 +1,785 @@
+Adams
+Afton
+Akron
+Albany
+Albertson
+Albion
+Alden
+Alexandria Bay
+Alfred
+Allegany
+Altamont
+Amagansett
+Amherst
+Amityville
+Amsterdam
+Ancram
+Andes
+Andover
+Angelica
+Angola
+Apalachin
+Appleton
+Aquebogue
+Arcade
+Ardsley
+Arkport
+Arkville
+Armonk
+Ashville
+Astoria
+Atlantic Beach
+Attica
+Au Sable Forks
+Auburn
+Averill Park
+Avon
+Babylon
+Bainbridge
+Baldwin
+Baldwinsville
+Ballston Lake
+Ballston Spa
+Batavia
+Bath
+Bay Shore
+Bayport
+Bayside
+Bayville
+Beacon
+Bearsville
+Bedford
+Bedford Hills
+Bellerose
+Bellmore
+Bellport
+Belmont
+Bemus Point
+Bergen
+Berlin
+Bethpage
+Big Flats
+Billings
+Binghamton
+Blauvelt
+Bloomfield
+Bloomingburg
+Bloomville
+Bohemia
+Bolivar
+Bolton Landing
+Boonville
+Boston
+Bowling Green
+Brasher Falls
+Brentwood
+Brewerton
+Brewster
+Briarcliff Manor
+Bridgehampton
+Brightwaters
+Broadalbin
+Brockport
+Brocton
+Bronx
+Bronxville
+Brooklyn
+Buchanan
+Buffalo
+Burnt Hills
+Cairo
+Caledonia
+Callicoon
+Calverton
+Cambria Heights
+Cambridge
+Camden
+Camillus
+Campbell Hall
+Canaan
+Canajoharie
+Canal Street
+Canandaigua
+Canastota
+Candor
+Canisteo
+Canton
+Carle Place
+Carmel
+Caroga Lake
+Carthage
+Castleton On Hudson
+Cato
+Catskill
+Cazenovia
+Cedarhurst
+Center Moriches
+Centereach
+Centerport
+Central Islip
+Central Square
+Central Valley
+Chappaqua
+Chatham
+Cheektowaga
+Chenango Bridge
+Cherry Valley
+Chester
+Chestertown
+Chittenango
+Churchville
+Cicero
+Clarence
+Clarksville
+Claverack
+Clayton
+Clifton Park
+Clifton Springs
+Climax
+Clinton
+Clinton Corners
+Clyde
+Clymer
+Cobleskill
+Coeymans
+Cohoes
+Cold Spring
+Cold Spring Harbor
+College Point
+Collins
+Commack
+Congers
+Cooperstown
+Copake
+Copiague
+Coram
+Corfu
+Corinth
+Corning
+Cornwall
+Cornwall On Hudson
+Corona
+Cortland
+Cortlandt
+anor
+Coxsackie
+Cross River
+Croton On Hudson
+Cuba
+Cutchogue
+Dansville
+Deansboro
+Deer Park
+Delanson
+Delevan
+Delhi
+Delmar
+Depew
+Deposit
+Derby
+Dexter
+Dix Hills
+Dobbs Ferry
+Dolgeville
+Douglaston
+Dover Plains
+Dryden
+Duanesburg
+Dundee
+Dunkirk
+Earlville
+East Amherst
+East Aurora
+East Bloomfield
+East Elmhurst
+East Greenbush
+East Hampton
+East Islip
+East Meadow
+East Moriches
+East Northport
+East Norwich
+East Quogue
+East Rochester
+East Rockaway
+East Setauket
+East Syracuse
+East Williston
+Eastchester
+Eden
+Edmeston
+Elbridge
+Eldred
+Elizabethtown
+Ellenville
+Ellicottville
+Elma
+Elmhurst
+Elmira
+Elmont
+Elmsford
+Endicott
+Fair Haven
+Fairport
+Falconer
+Far Rockaway
+Farmingdale
+Farmington
+Farmingville
+Fayetteville
+Ferndale
+Fillmore
+Findley Lake
+Fishers
+Fishkill
+Floral
+ Park
+Florida
+Flushing
+Fly Creek
+Fonda
+Forest Hills
+Fort Covington
+Fort Edward
+Fort Plain
+Franklin Square
+Franklinville
+Fredonia
+Freeport
+Freeville
+Fresh Meadows
+Fulton
+Fultonham
+Fultonville
+Galway
+Gansevoort
+Garden City
+Garnerville
+Garrison
+Geneseo
+Geneva
+Germantown
+Getzville
+Ghent
+Gilbertsville
+Glasco
+Glen Cove
+Glen Falls
+Glen Head
+Glen Oaks
+Glendale
+Glenmont
+Glens Falls
+Glenville
+Gloversville
+Goldens Bridge
+Goshen
+Gouverneur
+Gowanda
+Grahamsville
+Grand Island
+Granville
+Great Neck
+Greene
+Greenlawn
+Greenport
+Greenvale
+Greenville
+Greenwich
+Greenwood
+Greenwood Lake
+Groton
+Guilderland
+Hague
+Halesite
+Hamburg
+Hamilton
+Hamlin
+Hammondsport
+Hampton Bays
+Hancock
+Harriman
+Harrison
+artsdale
+Hastings
+Hastings On Hudson
+Hauppauge
+Haverstraw
+Hawthorne
+Hempstead
+Henrietta
+Herkimer
+Hewlett
+Hicksville
+Highland
+Highland Falls
+Highland Mills
+Hillsdale
+Hilton
+Hogansburg
+Holbrook
+Holland
+Holland Patent
+Holley
+Hollis
+oltsville
+Homer
+Honeoye
+Honeoye Falls
+Hoosick Falls
+Hopewell Junction
+Hornell
+Horseheads
+Houghton
+Howard Beach
+Howells
+Hudson
+Hudson Falls
+Hunter
+Huntington
+Huntington Station
+Hurley
+Hyde Park
+Ilion
+Inlet
+Interlaken
+Inwood
+Irvington
+Island Park
+Islandia
+Islip
+Islip Terrace
+Ithaca
+Jackson Heights
+Jamaica
+Jamesport
+Jamestown
+Jeffersonville
+Jericho
+Johnson City
+Johnstown
+Jordan
+atonah
+Keeseville
+Kenmore
+Kew Gardens
+Kinderhook
+King Ferry
+Kings Park
+Kingston
+La Fayette
+Lagrangeville
+Lake George
+Lake Grove
+Lake Hill
+Lake Luzerne
+Lake Peekskill
+Lake Placid
+Lake Pleasant
+Lakeville
+Lakewood
+Lancaster
+Larchmont
+Latham
+Laurelton
+Lawrence
+Le Roy
+Levittown
+Lewiston
+Liberty
+Lima
+Lindenhurst
+Little Falls
+Little Neck
+Little Valley
+Liverpool
+Livingston Manor
+Livonia
+Lockport
+Locust Valley
+Lodi
+Long Beach
+Long Is City
+Long Island City
+Lowville
+Lynbrook
+Lyndonville
+Lyons
+Macedon
+Mahopac
+Malone
+Malverne
+Mamaroneck
+Manhasset
+Manhattan
+Manlius
+Marathon
+Marcellus
+Marcy
+Margaretville
+Marion
+Marlboro
+Maspeth
+Massapequa
+Massapequa Park
+Massena
+Mastic
+Mastic Beach
+Mattituck
+Mayville
+Mechanicville
+Medford
+Medina
+Melville
+Menands
+Mendon
+Merrick
+Mexico
+Middle Granville
+Middle Island
+Middle Village
+Middleburgh
+Middleport
+Middletown
+Millbrook
+Miller Place
+Millerton
+Millwood
+Milton
+Mineola
+Mohegan Lake
+Monroe
+Monsey
+Montauk
+Montgomery
+Monticello
+Montour Falls
+Montrose
+Moravia
+Morris
+Morristown
+Morrisville
+Mount Kisco
+Mount Morris
+Mount Sinai
+Mount Vernon
+Nanuet
+Naples
+Nassau
+Nesconset
+New Berlin
+New City
+New Hampton
+New Hartford
+New Hyde Park
+New Paltz
+New Rochelle
+New Windsor
+New York
+New York Mills
+Newark
+Newburgh
+Newport
+Newyork
+Niagara Falls
+Niskayuna
+North Babylon
+North Baldwin
+North Bellmore
+North Chatham
+North Chili
+North Collins
+North Greece
+North Salem
+North Tonawanda
+Northport
+Northville
+Norwich
+Norwood
+Nunda
+Nyack
+Oakdale
+Oakfield
+Oakland Gardens
+Oceanside
+Odessa
+Ogdensburg
+Old Bethpage
+Old Chatham
+Old Forge
+Old Westbury
+Olean
+Oneida
+Oneonta
+Ontario
+Orangeburg
+Orchard Park
+Oriskany
+Ossining
+Oswego
+Ovid
+Owego
+Oxford
+Oyster Bay
+Ozone Park
+Painted Post
+Palatine Bridge
+Palisades
+Palmyra
+Parishville
+Parksville
+Patchogue
+Patterson
+Pawling
+Pearl River
+Peekskill
+Pelham
+Penfield
+Penn Yan
+Perry
+Phelps
+Phoenix
+Piermont
+Pine Bush
+Pine Island
+Pine Plains
+Pittsford
+Plainview
+Plattsburgh
+Pleasant Valley
+Pleasantville
+Poestenkill
+Point Lookout
+Pomona
+Port Chester
+Port Ewen
+Port Jefferson
+Port Jefferson Sta
+Port Jefferson Station
+Port Jervis
+Port Washington
+Portville
+Potsdam
+Poughkeepsie
+Poughquag
+Pound Ridge
+Prattsburgh
+Pulaski
+Purchase
+Putnam Valley
+Queens Village
+Queensbury
+Randolph
+Ravena
+Red Creek
+Red Hook
+Rego Park
+Remsen
+Remsenburg
+Rensselaer
+Rexford
+Rhinebeck
+Richfield Springs
+Richmond Hill
+Ridgewood
+Riverhead
+Rochester
+Rock Hill
+Rockaway Park
+Rockville Centre
+Rocky Point
+Rome
+Ronkonkoma
+Roosevelt
+Rosedale
+Roseland
+Rosendale
+Roslyn
+Roslyn Heights
+Rouses Point
+Roxbury
+Rush
+Rushville
+Rye
+Rye Brook
+S Richmond Hl
+Sackets Harbor
+Sag Harbor
+Saint Albans
+Saint James
+Saint Johnsville
+Salamanca
+Salem
+Sands Point
+Saranac Lake
+Saratoga Springs
+Saugerties
+Sayville
+Scarsdale
+Schenectady
+Schenevus
+Schoharie
+Schuylerville
+Scottsville
+Sea Cliff
+Seafor
+Selden
+Seneca Falls
+Setauket
+Shelter Island
+Sherburne
+Sherman
+Sherrill
+Shirley
+Shoreham
+Shortsville
+Sidney
+Silver Creek
+Silver Springs
+Sinclairville
+Skaneateles
+Slate Hill
+Sleepy Hollow
+Slingerlands
+Smithtown
+Sodu
+Somers
+Sound Beach
+South Fallsburg
+South Glens Falls
+South Ozone Park
+South Richmond Hill
+South Salem
+South Setauket
+Southampton
+Southold
+Sparkill
+Speculator
+Spencer
+Spencerport
+Speonk
+Spring Valley
+Springfield Gardens
+Springville
+Staatsburg
+Stamford
+Stanfordville
+Stanley
+Staten Island
+Stephentown
+Stone Ridge
+Stony Brook
+Stony Point
+Suffern
+Sugar Loaf
+Sunnyside
+Sylvan Beach
+Syosset
+Syracuse
+Tallman
+Tannersville
+Tappan
+Tarrytown
+Theresa
+Thiells
+Thompson Ridge
+Thornwood
+Ticonderoga
+Tivoli
+Tonawanda
+Trinity
+Troy
+Trumansburg
+Tuckahoe
+Tully
+Tupper Lake
+Tuxedo Park
+Unadilla
+Uniondale
+Utica
+Valatie
+Valhalla
+Valley Cottage
+Valley 
+Stream
+Verbank
+Vernon
+Verplanck
+Vestal
+Victor
+Voorheesville
+Waccabuc
+Wading River
+Wainscott
+Walden
+Wallkill
+Walton
+Walworth
+Wampsville
+Wantagh
+Wappingers Falls
+Warsaw
+Warwick
+Washingtonville
+Water Mill
+Waterford
+Waterloo
+Watertown
+Waterville
+Watervliet
+Watkins Glen
+Waverly
+Wayland
+Webster
+Weedsport
+Wellsville
+West Babylon
+West Coxsackie
+West Fulton
+West Harrison
+West Haverstraw
+West Hempstead
+West Henrietta
+West Islip
+West Monroe
+West Nyack
+West Sand Lake
+West Sayville
+West Seneca
+West Valley
+West Winfield
+Westbury
+Westerlo
+Westfield
+Westhampton
+Westhampton Beach
+Westport
+White Plains
+Whitehall
+Whitesboro
+Whitestone
+Whitney Point
+Williamson
+Williamsville
+Williston Park
+Wilmington
+Wilson
+Windham
+Windsor
+Wolcott
+Woodbourn
+Woodbur
+Woodhaven
+Woodmere
+Woodridge
+Woodside
+Woodstock
+Worcester
+Wurtsboro
+Wykagyl
+Wynantskill
+Yaphank
+Yonkers
+Yorktown Heights
+Yorkville
+Youngstown

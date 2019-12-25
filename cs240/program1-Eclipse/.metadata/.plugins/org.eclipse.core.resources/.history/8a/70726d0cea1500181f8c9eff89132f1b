@@ -1,0 +1,80 @@
+//============================================================================
+// Name        : Program1.cpp
+// Author      : 
+// Version     :
+// Copyright   : Your copyright notice
+// Description : Hello World in C++, Ansi-style
+//============================================================================
+/*
+#include <iostream>
+#include "LinkedList.h"
+using namespace std;
+
+int main() {
+
+	List one;
+
+	one.append(1);
+	cout << "TESTING PRINT()\nEXPECTED OUTPUT: 1" << endl;
+	one.print();
+	cout << endl;
+//cout << "Now adding to the head so it should be 1, 2" << endl;
+	one.append(2);
+	one.append(2);
+	one.append(2);
+
+	cout << "EXPECTED OUTPUT: 1222" << endl;
+	one.print();
+	cout << endl;
+
+	one.append(3);
+	cout << "EXPECTED OUTPUT: 12223"<< endl;
+	one.print();
+	cout << endl << "Inserting 4 into head......" << endl;
+	one.insert_head(4);
+	cout << "EXPECTED OUTPUT: 412223 "<< endl;
+	one.print();
+	cout<< endl;
+
+	cout << "TESTING FIND() GOING TO LOOK FOR 1 AND WILL RETURN IF FOUND" << endl;
+	int x = 1;
+	cout <<*one.find(&x) << endl;;
+	cout <<"Testing FIND() WILL LOOK FOR NUMBER THAT IS NOT IN. NULL is expected" <<endl;
+	int a = 10;
+	if(one.find(&a) == NULL)
+		{
+			cout << "NULL" << endl;
+		}
+
+	cout << "TESTING GET(): EXPECTED OUTPUT = 4" << endl <<*one.get() << endl;
+	cout << "TESTING COPY CONSTRUCTOR. EXPECTED VALUE: 4122234" << endl;
+	List two(one);
+	two.print();
+	cout << endl;
+	two.append(5);
+	two.insert_head(3);
+	two.print();
+	cout << endl;
+
+cout<<"REMOVING...." << endl;
+	two.remove_at_pos(1);
+	cout << endl;
+	two.print();
+	cout << endl;
+
+	two.append(8);
+	two.print();
+	cout << endl;
+
+	two.insert_head(1);
+	two.print();
+	cout << endl;
+
+
+	two.remove_at_pos(4);
+	two.print();
+	cout <<"removed" << endl;
+
+
+	return 0;
+}*/

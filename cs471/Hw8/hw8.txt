@@ -1,0 +1,122 @@
+Kevin Andrade, Scott Mason, Shania Mahmud
+HW 8
+
+
+1. Explain the difference between true iterators and iterator objects.
+A true iterator enumerates items, they produce (by calculating)  loop index values. Iterator objects on the other hand, which provides methods of initializations. The iterator is in the object’s data members, they maintain all intermediate state in explicit data structures, not a program counter. 
+2. int a = 0;       
+int b = (a++ && ++a) > (a++ && a++);
+printf( "%d %d", a, b ); 
+   1. Left to right:
+
+
+int b = (a++ && ++a) > (a++ && a++);	a=0, b=?
+a++					A = 1, b=?
+++a 					A=2 , b=?
+1 && 2					A=2, b=?
+1>(a++ && ++a)				
+a++					A=3, b=?				
+a++					A=4 b=?
+3 && 4					A=4 b=?
+b= 1>1 					a=4, b=0,
+
+
+   b. right to left
+
+
+int b = (a++ && ++a) > (a++ && a++);	a=0 b=?
+a++ 					a=1, b=?
+a++ 					a=2, b=?
+1 && 2					a= 1, b=?
+(a++ && ++a) >1				a=1, b=?
+a++ 					a= 3, b=?
+a++ 					a=4, b=?
+3 && 4					a=4, b=?
+b=1>1					a=4, b=0
+	
+
+
+
+3)
+i = 0; 
+while (a[i++] != 0); 
+
+for (i = 0; a[i] != 0; i++);
+They are not equivalent since the while loop will point to the next element after the first zero element is found i++ occurs first. For the for loop, it will be the index of the first zero element since i++ occurs only if the second clause (a[i] != 0) occurs. 
+
+
+
+
+4) a) inline int square(int n){
+        Return n*n;
+}
+main(){
+Int s, n = 10, i;
+for(int i = 1; i <= 10; i++){
+S = square(i)
+printf(“%d\t”, s);
+}
+b) #define square(i) i*i
+main(){
+Int i = 10;
+printf(“%d”, square(i));
+}
+
+5)
+a) Strongly typed languages are the languages that requires each object to hae type. In a strongly typed language, at runtime, it must be verified for an operation to be allowed on an object. It is not possible to work around the type system. In a strongly typed language, an error will occur if we are trying to apply an operation to an object which does not support that operation. A statically typed language is so if it performs type checking at compile time instead of runtime. In a statically typed language, the error will be thrown at compile time not at run time. According to statically typed language, the compiler can statically assign a correct type to every expression. C is not strongly typed because it does not perform any check at run time and strongly typed languages perform checks at run time.
+b) Polymorphism is having the same name but different functionality depending on semantics. Parametric polymorphism us when a function or data types are written generically where the logic and code doesn’t depend on the type. Subtype polymorphism is defining something for super type but at runtime, depending on when subtype semantics will be decided. Generics are defining something with general logic that can be applied to all data types.
+c) Discrete data types are data types that contain values that are ordered and countable. Each element has knowledge about the next and previous element. Discrete data types are a subset of scalar data types, also called ordinal types. Scalar data types contain only one value at a particular time, also known as simple types, and are a superset of discrete data types.
+
+6) The denotational point of view considers that a type is a set of values. A value has a given type if it belongs to the set, an object has a given type if its value is guaranteed to be in the set. Constructive point of view considers that a type is either one of a small collection of built-in types or a composite type create by applying a type constructor to one or more simpler types. Abstraction-based views of types considers that a type is defined by the operations that may be performed by it and the effects of these operations.
+
+7) Using templates, a user can pass any data type as a parameter in order to avoid writing the same code for a different type. Templates are type safe in comparison to macros. Macros are also a type name whenever a name is given the compiler will replace that name with the given code. Macros are not type safe, and will only work with one data type. Macros and templates can both be used to simplify the code, and both can be used for the replacement of code. Templates can be used for more than one expansion while macros cannot. Macros, however, will take less time to compile.
+
+8. Here are some type and variable declarations in C syntax:
+typedef char* String1; typedef char* String2:
+String1 a;
+String2 b, c;
+String2 d;
+
+State which variables are type equivalent under(a) structural equivalence, (b) strict name equivalence, and (c) the actual C equivalence algorithm.   
+   1. a = b = c = d        since they all have the same “structure”
+   2. b = c = d         since b c and d have the same name
+   3. a = b = c = d         since c uses structural equivalence
+
+9.Given the following C++ declaration,
+double* dp = new double(3);
+void* vp;
+int* ip;
+which of the following assignments does the compiler complain about?
+vp = dp;
+dp = vp;
+ip = dp;
+dp = ip;
+ip = vp;
+
+ip = (int*) vp;
+ip = static_cast<int*>(vp);
+ip = static_cast<int*>(dp);
+ip = reinterpret_cast<int*>(dp);
+
+
+  a. The compiler would complain about 
+dp = vp, 
+ip = dp, 
+dp = ip, 
+ip = vp, 
+ip = static_cast<int*>(dp)
+
+
+Briefly explain the behavior of the compiler.  Will *ip ever have the value 3 after one of the assignments to ip ?
+   1. *ip wont have the value 3 since the compiler will complain as soon as it tries to do dp = vp.  The compiler compares sizes, in this example, where vp is being assigned to dp, dp and vp have different types of information.  Compiler also complains on the line where dp is being assigned to ip, this is due to the pointers containing different information about the type of what they point to. 
+
+10.Page 405,exercise 8.12
+Consider the following C declaration, compiled on a 64-bit x86 machine: struct { int n; char c; } A[10][10];
+   1. Since structs are 8 bytes we can get the index by doing basic arithmetic (start + row + col). 1000 + 3(10)(8) + 7(8) which gets us 1296.
+
+11.Page 407 exercise 8.16
+Explain the meaning of the following C declarations:
+ double *a[n];   - >  This is just an array of n elements with pointers to doubles called a. 
+ double (*b)[n];  -> A pointer to an array of n size of doubles called b
+ double (*c[n])();  ->  An n size array called c of pointers to functions that return doubles
+double (*d())[n]; -> same as before, except it's called d. An  n size array of pointers to functions that return doubles.

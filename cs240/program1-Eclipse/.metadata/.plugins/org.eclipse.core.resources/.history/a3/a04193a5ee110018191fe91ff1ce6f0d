@@ -1,0 +1,195 @@
+#include "LinkedList.h"
+using namespace std;
+/////////////Default constructor/////////////////
+List::List(){
+	this->head = NULL;
+	this->current = NULL;
+}
+/////////////DESTRUCTOR/////////////////////////////////////////////// WORKS
+List :: ~List(){
+	reset();
+	while(current != NULL){
+		Node * next = current->nlink();
+		cout<<"IM BEING DELETED: " << *(current->getData())<< endl;
+		delete current;
+		current = next;
+	}
+	head = NULL;
+	current = NULL;
+
+
+}
+//////////////////////OVERLOADED OPERATOR <<////////////////////////////
+ostream& operator<<(ostream& os, List b);
+
+
+}
+////////////////////COPY CONSTRUCTOR/////////////////////////////WORKS
+List :: List(const List & o){
+	    head = current = NULL;
+		Node * node = o.head;
+		while(node!=NULL){
+			append(*(node->getData()));
+			node = node->nlink();
+		}
+}
+///////////////////////INSERTING AT THE END///////////////////////////////////////////WORKS
+void List :: append(int input){
+	//what im adding
+	 if(is_item())
+	    {//ptr to help with loop
+		 while(current!=NULL)
+		 {
+			 if(current->nlink() == NULL)
+			 {
+				 Node * append = new Node(input);
+				 current->set_nlink(append);
+				 current = append;
+				 break;
+			 }
+			 current = current->nlink();
+		 }
+	    }
+	 else{//IF THERES NOTHING IN THE LIST.
+		 Node * append = new Node (input);
+		 head = append;
+		 current = append;
+	 }
+}
+
+////////////////////INSERT AT THE HEAD//////////////////////////////////////////////WORKS
+void List :: insert_head(int input){
+
+	if(is_item()){
+	Node * insert = new Node(input, head);
+	head = insert;
+	current = insert;
+	}
+	else {
+		Node * insert = new Node(input, NULL);
+		//insert->set_nlink = NULL;
+		head = insert;
+		current = insert;
+	}
+}
+
+
+
+//Function will keep going nlink() until it hits nulls. Remember that it picks
+//up from wherever current was last.
+/*
+bool List::next(){
+  while(current!=NULL){
+	  if (current->nlink() == NULL) return false;
+	  else return true;
+	  current->nlink();
+  }
+  return false;
+}
+*/
+///////////////////////////Delete At iTH POSITION////////////////////////////////////////////////
+void List::remove(Ant* input)
+{
+
+	if(head == NULL) return;
+	if(input == NULL) return;
+	Node * temp = head;
+
+	if(amount of nodes == 1){
+		head = temp->nlink(); //moves head one over
+		current = head; // updates current to new head
+		delete(temp); //frees up variable
+		return;
+	}
+	int i =0;
+	/*WILL LOOP UNTIL IT IS ONE BEFORE THE NODE TO DELETE*/
+	while(temp->nlink()->getID() != input->getID()){
+		temp = temp->nlink();
+	}
+	Node * temp2= temp->nlink(); //this is the actual node to delete.
+	temp->set_nlink(temp2->nlink()); //attempting to set n-1 to point to n+1 HELPPPP
+	current = temp->nlink();
+	delete temp2;
+
+
+}
+
+
+
+
+
+
+void List :: remove_at_pos(int n){
+	if(head == NULL) return;
+	if(n == NULL) return;
+	Node * temp = head;
+	//if we want to delete the head notice how we cannot be at n-1 so we do a special case
+	if(n == 1){
+		head = temp->nlink(); //we move head to n+1
+		current = head;
+		delete (temp);
+		return;
+	}
+
+	int i =0;
+	/*loop will continue until temp is ONE before the nth node that we want to delete*/
+	while(i < n-2){
+		temp = temp->nlink();
+	}
+	Node * temp2 = temp->nlink(); //this makes temp2 the actual nth node
+	temp->set_nlink(temp2->nlink());//this connects the n-1 node to n+1.
+	current = temp;
+	delete temp2;
+}
+//////Looks to see if its in the list and returns the Ant if not then returns NULL////////////WORKS
+int * List::find(int * num){
+  //this->reset();	// resets pointer
+	Node * ptr = head;
+  while(ptr != NULL)
+  {
+      if(*num == *(ptr->getData())) return ptr->getData();
+      ptr = ptr->nlink();
+  }
+  return NULL;
+}
+/*
+//returns ID of the Ant which i can then use the remove function to delete the Node
+int  List :: find (Ant  input){
+	Node * ptr = head;
+	while(ptr != NULL){
+		if(input.getID() == ptr->getData().getID()) return ptr->getData().getID();
+		ptr = ptr->nlink();
+	}
+	return NULL;
+}
+*/
+
+///////////////////////////PRINTS//////////////////WORKS
+void List::print(){
+
+Node * ptr = head;
+	while(ptr !=NULL){
+	cout << *(ptr->getData());
+	ptr = ptr->nlink();
+}
+}
+
+
+/////////////////resets current pointer to head.///////////////////////////////NoT WORKING
+void List::reset(){
+	 current = head;
+}
+
+//////////////Gets what it is currently pointing at//////////WORKS
+int * List::get(){
+	if(head == NULL) return NULL;
+	if(current == NULL){
+		current = head;
+		return NULL;
+	}
+	return current->getData();
+}
+
+
+
+

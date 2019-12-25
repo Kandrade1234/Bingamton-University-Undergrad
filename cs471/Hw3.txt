@@ -1,0 +1,72 @@
+1)
+
+my_member(X,[X|_]).
+my_member(X,[_|T]) :- my_member(X,T).
+
+
+
+2)
+init([_], []).
+init([X|T],[X|Y]) :- init(T, Y).
+
+
+3)
+is_increasing([]).
+is_increasing([_]).
+is_increasing([X,Y|Xs]) :- X =< Y, is_increasing([Y|Xs]).
+
+
+4)
+
+element_at(X,[X|_] ,0).
+element_at(X, [_|T], Count) :- E is Count-1, element_at( X, T ,E).
+
+5)
+
+
+insert_at(_,[],_,[]).
+insert_at(X, Y, 0, [H|T]) :- X = H, Y = T.  
+insert_at(X, [H|T], Count, [H2|T2]) :- Count > 0, E is Count-1, H = H2, insert_at(X, T, E, T2).
+
+
+
+6)
+
+zip([],[],[]).
+zip([H1|T1], [H2|T2], [H3|T3]) :- ((H1, H2) = H3), zip(T1, T2, T3).
+
+
+
+7)
+zip2([],[],[]).
+zip2([_], [], []).
+zip2([], [_], []).
+zip2([H1|T1],[H2|T2],[H3|T3]) :- ((H1, H2) = H3), zip2(T1, T2, T3).
+
+8)
+merge([],[],[]).
+merge([H1|T1], B, [H3|T3]) :- H3=H1, merge(T1, B, T3).
+merge(A, [H2|T2], [H3|T3]) :- H3=H2, merge(A, T2, T3).
+
+9)
+less_than(0, succ(_)).
+less_than(succ(X), succ(Y)) :- less_than(X,Y).
+
+
+10) 
+subtract(X, Y, Z) :- add(Y, Z, X).
+
+11)ackermann(0, N, X) :- X is N+1.
+ackermann(M, 0, X) :- M>0, M1 is M-1, ackermann(M1, 1, X).
+ackermann(M, N, X) :- M>0, N>0, M1 is M-1, N1 is N-1, ackermann(M, N1, X1), ackermann(M1, X1, X).
+
+
+//used wikipedia for help on this question.
+Tests
+
+ackermann(0,0,1) -----> true
+ackermann(1,0,2)------> true
+ackermann(0,1,2) ------>true
+
+
+ackerman(0,0,0)----->false

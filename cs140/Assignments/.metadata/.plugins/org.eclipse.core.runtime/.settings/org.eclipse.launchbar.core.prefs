@@ -1,0 +1,15 @@
+LaunchTargetManager/org.eclipse.launchbar.core.launchTargetType.local,Local/arch=x86_64
+LaunchTargetManager/org.eclipse.launchbar.core.launchTargetType.local,Local/os=macosx
+configDescList=org.eclipse.launchbar.core.descriptorType.default\:circuitTester,org.eclipse.launchbar.core.descriptorType.default\:teamTester,org.eclipse.launchbar.core.descriptorType.default\:Demo,org.eclipse.launchbar.core.descriptorType.default\:NamesResource,org.eclipse.launchbar.core.descriptorType.default\:MCompTester,org.eclipse.launchbar.core.descriptorType.default\:testMComp,org.eclipse.launchbar.core.descriptorType.default\:Testarr,org.eclipse.launchbar.core.descriptorType.default\:Array2Dexamples,org.eclipse.launchbar.core.descriptorType.default\:Challenge,org.eclipse.launchbar.core.descriptorType.default\:P19_1,org.eclipse.launchbar.core.descriptorType.default\:P19_2,org.eclipse.launchbar.core.descriptorType.default\:p19_3,org.eclipse.launchbar.core.descriptorType.default\:NamesResource (1),org.eclipse.launchbar.core.descriptorType.default\:P19_7,org.eclipse.launchbar.core.descriptorType.default\:Test,org.eclipse.launchbar.core.descriptorType.default\:GoLdriver,org.eclipse.launchbar.core.descriptorType.default\:StreamDemo,org.eclipse.launchbar.core.descriptorType.default\:Tester
+eclipse.preferences.version=1
+org.eclipse.launchbar.core.descriptorType.default\:Array2Dexamples/activeLaunchMode=run
+org.eclipse.launchbar.core.descriptorType.default\:Array2Dexamples/activeLaunchTarget=org.eclipse.launchbar.core.launchTargetType.local\:Local
+org.eclipse.launchbar.core.descriptorType.default\:Challenge/activeLaunchMode=run
+org.eclipse.launchbar.core.descriptorType.default\:Challenge/activeLaunchTarget=org.eclipse.launchbar.core.launchTargetType.local\:Local
+org.eclipse.launchbar.core.descriptorType.default\:Demo/activeLaunchMode=run
+org.eclipse.launchbar.core.descriptorType.default\:Demo/activeLaunchTarget=org.eclipse.launchbar.core.launchTargetType.local\:Local
+org.eclipse.launchbar.core.descriptorType.default\:NamesResource\ (1)/activeLaunchMode=debug
+org.eclipse.launchbar.core.descriptorType.default\:P19_7/activeLaunchMode=run
+org.eclipse.launchbar.core.descriptorType.default\:Test/activeLaunchMode=run
+org.eclipse.launchbar.core.descriptorType.default\:circuitTester/activeLaunchMode=run
+org.eclipse.launchbar.core.descriptorType.default\:circuitTester/activeLaunchTarget=org.eclipse.launchbar.core.launchTargetType.local\:Local

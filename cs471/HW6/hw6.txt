@@ -1,0 +1,95 @@
+Chris Glasheen, Kevin Andrade, Shania Mahmud
+HW 6
+
+1) Indicate the binding time (e.g., when the language is designed, when the
+program is linked, when the program begins execution, etc.) for each of the
+following decisions in your favorite programming language and implementation. Explain any answers you think are open to interpretation.
+
+Language: C
+-The number of built in functions (math, type queries, etc.) language design time occurs in Language design time. 
+-At compile time, variable declarations that correspond to a particular variable reference (use) is binded.
+-The maximum length for a constant(literal) character string is binded during language implementation time.
+-During run time, referencing environment for a subroutine that is pass as a parameter is bound.
+-The address of a particular library routine is done at link time. 
+-Finally, the total amount of space occupied by a program code and data occurs at run time. 
+
+2) In assignment 1 problems 2 and 3 you studied an iterative version and a recursive of the 'power' function.  Download powF.c  and compile to assembly code using the command "gcc -S powF.c" You can compile this remotely on the department machines by using "ssh remote.cs.binghamton.edu -l<your id>"
+a) Draw the activation record for powF() based on the assembly code generated.   Field's offset should be consistent with the assembly code. By "draw," we mean you should have one or more lines for each item in the activation record, with the location somehow clearly indicated.
++-------------------------------------+
+| %eax : return value		      |
++-------------------------------------+
+| contents of old %rbp : control link |
++-------------------------------------+
+| -4(%rbp) : pow		      |
+| -8(%rbp) : base		      |
++-------------------------------------+
+
+b) Which way does the program stack grow? (i.e. towards higher addresses or lower addresses?)
+
+The program stack grows downward.
+
+c) Annotate the powF.s file.  Indicate all the instruction that read, write, "create" or "delete" the stack memory.  Name the fields affected by instruction.
+
+Annotated powF.s included in submission
+
+3) Now compile powF.c to assembly code on your machine using the command "gcc -O2 -S powF.c". Compare the assembly file created using optimization switch, -O2, with the assembly file created without optimization(above #2).  Pay attention to how powers's recursion is "implemented".  How are they different?
+
+The optimized version of the powF code uses a loop instead of recursion. Because of this there is only one call to powF which means only one activation record. The non optimized version uses recursive calls which creates numerous activation records. 
+
+4) Many storage-management algorithms maintain a list of free blocks.  Here are two different algorithms, first fit and best fit, used to search this list and return a block of the appropriate size.  Which strategy, if either, will result in lower external fragmentation?  What does external fragmentation depend on?
+
+Both first fit and best fit cause external fragmentation, however best fit causes less external fragmentation than first fit. External fragmentation occurs when memory blocks are allocated in such a way where, eventually, there could be small gaps between the blocks. Since the available memory isn’t contiguous, it’s difficult to fit new blocks into memory. The amount of external fragmentation depends on the method of block allocation that is used.
+
+5) What is the complexity of using first fit algorithm to allocate blocks?  Briefly explain an algorithm to speed up the allocation. What is the complexity of this modification?
+
+The complexity for first fit is O(n). To speed up allocation, we can maintain separate free lists for blocks of different sizes, where each request is rounded up to the next standard size. This would reduce the complexity to O(1).
+Source: Programming Language Pragmatics, 4th Edition, Michael L. Scott
+
+6) Page 124 CYU( check your understand) #4, page 135 CYU #12 and page 167 exercise 3.4.
+
+Explain the distinction between lifetime of a name-to-object binding and its visibility?
+
+Life time is the period between the time the objects creation and its destruction. Visibility on the other hand, is the scope of where the object is accessible.
+ 
+What do we mean by the scope of a name-o-object binding? 
+
+Scope refers to the textual region of the program where the name-to-object binding is active .  For example, a scope could be within the context of a subroutine where the binding is created. 
+
+Give three concrete examples drawn from programming languages with which you are familiar in which a variable is live but not in scope.
+
+Example 1) A variable is created in main, but a subroutine is called.It is still alive during the execution of the subroutine but it is out of scope. 
+Bar(){
+  //x is still alive
+  int y;
+}
+main(){
+  int x;
+  bar();
+}
+
+Example 2) A variable is created during the execution of a subroutine Foo(), the subroutine Boo() is called before Foo() returns. While Boo() is executing, the variable is out of scope but live.
+
+Boo(){
+  cout << “hello” << endl;
+}
+Foo(){
+  int x;
+  Boo();
+}
+
+Example 3)
+int main(){ 
+  int r=30;  
+  while(r>0){ 
+    int y=100;  
+    int x;  x=100; 
+    while (y>0){  
+      (other x is still alive just out of scope!)
+      int x=2; 
+      printf("XX %d\n", x);     
+      y--;
+    }
+    r--;
+    printf(" X %d\n", x);
+  }
+}

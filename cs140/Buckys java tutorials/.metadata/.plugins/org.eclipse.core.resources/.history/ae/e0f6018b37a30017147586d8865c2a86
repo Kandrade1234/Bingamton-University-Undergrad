@@ -1,0 +1,18 @@
+
+public class tuna extends food{
+
+	private boolean liking;
+	
+	public tuna (String nam, boolean preference)
+	{
+		super(nam);
+		liking = preference;
+	}
+	
+	
+
+	
+	
+	
+	
+}

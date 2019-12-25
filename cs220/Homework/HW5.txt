@@ -1,0 +1,39 @@
+Kevin Andrade
+1. Given the C expression: float x=-19.625;
+
+	A. What is the value for the sign bit of x? 
+		1
+
+	B. What is the binary representation of 19.625, using a binary point
+	   instead of a decimal point? 
+		10011.101
+
+	C. What is the representation of 19.625 in normalized binary scientific
+	   notation? 
+		1.0011101 x 2^4
+
+	D. What is the unbiased value of the exponent in the C representation?
+		The unbiased value is 4.
+
+	E. What is the biased value of the exponent in the C representation of
+	   19.625? 
+		The biased value is 131 
+
+	F. What are the concrete fraction bits in the binary representation of x?
+		The concrete fraction bits are 1001 1101
+
+	G. What is the hexadecimal concrete representation of x?
+			-13.A
+
+2. Given the following code:
+
+	union flint {
+		float xf;
+		unsigned int xi;
+	} fl;
+	fl.xi=0x42c8000;
+	printf("xf=%.3f\n",fl.xf);
+
+	What will get printed to standard output?
+		xf= 0.000
+

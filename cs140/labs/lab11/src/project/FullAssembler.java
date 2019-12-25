@@ -1,0 +1,200 @@
+package project;
+import java.lang.Object;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.nio.ByteBuffer;
+import java.nio.channels.FileChannel;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.Scanner;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+public class FullAssembler implements Assembler {
+
+	private boolean readingCode = true;
+	private int noArgCount = 0;
+
+
+
+	private Instruction makeCode(String[] parts){ 
+		if(noArgument.contains(parts[0])){ 
+			noArgCount++;
+			int opPart = 8*Instruction.opcodes.get(parts[0]);
+			opPart += Instruction.numOnes(opPart)%2;
+			return new Instruction((byte)opPart, 0);
+		}
+
+		int flags = 0;
+		if(parts[1].charAt(0) == '#'){
+			flags = 2;
+			parts[1] = parts[1].substring(1);
+
+		}
+		else if (parts[1].charAt(0) == '@'){
+			flags = 4;
+			parts[1] = parts[1].substring(1);			
+		}
+		else if (parts[1].charAt(0) == '&'){
+			flags = 6; 
+			parts[1] = parts[1].substring(1);			
+		}
+		//Confused if we are supposed to use some other argument or instantiate one and initialize
+
+		Integer arg = Integer.parseInt(parts[1],16);
+		//System.out.println(Instruction.opcodes.get(parts[0]) + flags);
+
+		int opPart = 8 * Instruction.opcodes.get(parts[0]) + flags;
+		opPart += Instruction.numOnes(opPart)%2;
+
+		return new Instruction((byte)opPart,arg);	
+	}
+
+	private DataPair makeData(String [] parts){
+		return new DataPair(Integer.parseInt(parts[0], 16), Integer.parseInt(parts[1], 16));
+	}
+
+	@Override
+	public int assemble(String inputFileName, String outputFileName, StringBuilder error) {
+		readingCode = true;
+		int retVal = 0;
+		if(error == null) throw new IllegalArgumentException("Coding error: the error buffer is null");
+		ArrayList<String> strings = null;
+		try(Stream<String> linesOfCode = Files.lines(Paths.get(inputFileName))) {
+			strings = (ArrayList<String>) linesOfCode.collect(Collectors.toList());
+
+		} catch(IOException e) {
+			error.append("\nUnable to open the source file");
+		}
+
+		System.out.println(strings.toString());
+
+		for(int i = 0; i < strings.size(); i++)
+		{
+			//if(!readingCode) break;
+			String line = strings.get(i);
+			if(line.trim().length() == 0)
+			{
+				for(int j = i+1; j < strings.size(); j++)
+				{
+					String temp = strings.get(j);
+					if(temp.trim().length() > 0)
+					{
+						error.append("\nIllegal blank line in the source file in line " + (i+1));
+						retVal = i + 1;
+						break;
+					}
+				}
+
+			}
+			//System.out.println(i);
+			if(line.trim().length() > 0 && (line.charAt(0) == ' ' || strings.get(i).charAt(0) == '\t')){ 
+				error.append("\nLine starts with illegal white space in the source file in line " + (i+1));
+				retVal = i + 1;
+			}
+			if(line.trim().toUpperCase().equals("DATA") && !line.trim().equals("DATA")){
+				error.append("\nLine does not have DATA in uppercase in the source file in line " + (i+1));
+				retVal = i + 1;
+			}
+			if(line.trim().toUpperCase().equals("DATA") && readingCode == false){
+				error.append("\nillegal second data declaration in the source file in line " + (i+1));
+				retVal = i + 1;
+			}
+
+
+			if(line.length() > 0 && line.charAt(0) != ' ' && line.trim().equals("DATA")) readingCode = false;
+			//System.out.println(line.trim().length() + " " + i);
+			if(readingCode && line.trim().length() > 0 && !line.trim().toUpperCase().equals("DATA"))
+			{
+				String[] parts = line.trim().split("\\s+");
+				if(parts[0].trim().toUpperCase() != parts[0].trim() && Instruction.opcodes.keySet().contains(parts[0].toUpperCase())){ 
+					error.append("\nError on line " + (i+1) + ": mnemonic must be upper case");
+					retVal = i + 1;
+				}
+				else if(!Instruction.opcodes.keySet().contains(parts[0])){ error.append("\nError on line " + (i+1) + ": illegal mnemonic");
+				retVal = i + 1;
+
+				}
+
+				if(noArgument.contains(parts[0]) && parts.length > 1){ error.append("\nError on line " + (i+1) + ": this mnemonic cannot take arguments");
+				retVal = i + 1;
+
+				}
+				else if(!noArgument.contains(parts[0]) && Instruction.opcodes.keySet().contains(parts[0]) && parts.length == 1){
+					error.append("\nError on line " + (i+1) + ": this mnemonic is missing an argument");
+					retVal = i + 1;
+
+				}
+				else if(parts.length > 2){ error.append("\nError on line " + (i+1) + ": this mnemonic has too many arguments");
+				retVal = i + 1;
+
+				}
+
+				if(parts.length == 2) try
+				{
+					if(parts[1].charAt(0) =='&' || parts[1].charAt(0) =='@' || parts[1].charAt(0) =='#')
+					{
+						parts[1] = parts[1].substring(1);
+					}
+					int arg = Integer.parseInt(parts[1],16);
+					//System.out.println(arg);
+				} catch(NumberFormatException e) {
+					error.append("\nError on line " + (i+1) + ": argument is not a hex number");
+					retVal = i + 1;
+
+				}
+			}
+			else if(!readingCode && !line.trim().equals("DATA") && line.trim().length() != 0)
+			{
+				String[] parts = line.trim().split("\\t|\\s+");
+				if(parts.length > 1) 
+				{
+					try
+					{
+						int address = Integer.parseInt(parts[0],16);
+						//System.out.println(address);
+					} catch(NumberFormatException e) {
+						error.append("\nError on line " + (i+1) + 
+								": data has non-numeric memory address");
+						retVal = i + 1;
+						//retVal = offset + i + 1;
+						//return i;
+					}
+					try
+					{
+						int value = Integer.parseInt(parts[1],16);
+						//System.out.println(value);
+					} catch(NumberFormatException e) {
+						error.append("\nError on line " + (i+1) + ": data has non-numeric memory value");
+						retVal = i + 1;
+						//return i;				
+					}
+				}
+				else error.append("\nInvalid data format in the source file in line " + (i+1));
+				retVal = i + 1;
+			}
+		}
+		//readingCode = true;
+		if(error.length() == 0) return new SimpleAssembler().assemble(inputFileName, outputFileName, error);
+		return retVal; 
+	}
+	public static void main(String[] args) {
+		StringBuilder error = new StringBuilder();
+		System.out.println("Enter the name of the file without extension: ");
+		try (Scanner keyboard = new Scanner(System.in)) { 
+			String filename = keyboard.nextLine();
+			int i = 
+					new FullAssembler().assemble(filename + ".pasm", 
+							filename + ".pexe", error);
+			System.out.println(error.toString());
+			keyboard.close();
+		}
+		
+	}
+
+
+}

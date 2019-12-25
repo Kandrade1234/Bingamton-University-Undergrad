@@ -1,0 +1,37 @@
+Scott Mason, Kevin Andrade, Shania Mahmud
+
+1.
+Static scoping:
+1, 1, 2,2
+Dynamic scoping:
+1,1, 2,1
+Why?
+
+In static scoping the ‘x’ all refer to the same x. In dynamic scoping, line [x: integer] the procedure second() refers to a different x which only within the scope of second(), which is why the last print_x() still prints 1.
+
+2. What does this program print? Which of a, b, c, and d, if any, is likely to be statically allocated? Which could be allocated on the stack? Which would need to be allocated in the heap? Explain. 
+5 and 7 will be printed. ‘a’ would be declared statically. ‘c’ would be dynamic since it needs to be stored in the delegate function. ‘b’ can be stored statically or dynamically and ‘d’ can be allocated in the stack. 
+
+3. What are two principal tradeoff between reference counts and tracing strategy used in garbage collecting?
+A principle tradeoff between reference counts and tracing strategy is the computational time it takes to perform. It is expensive to increment or decrement a variable when it is lost or copied. The reference count model does not grow with dynamic memory. The tracing strategy is less expensive per iteration but grows asymptotically.
+
+Another tradeoff with reference counts is that you are certain when the data that is being pointed to by a reference clears. With tracing, you aren't sure of when data is collected. 
+
+4)
+The program will print out 21. The add function is the only function where x was not redefined. Static scoping would mean that once x is redefined in the procedure, it loses access to the global x.
+In dynamic scoping with deep binding, the environment is bound to the function when it is passed as an argument. X = 1 and Y = 3 when add() is passed to second(), so 4 is the final value.
+In dynamic scoping with shallow binding, function calls take the environment of the previous function call.
+
+5) Based on the code, nested named subroutines have state, and that state can be changed. On the first call to foo, the variable lex is present in the subroutine foo and bar. Foo gets the value for the variable lex from the subroutine call. Then after it prints the argument of lex, it calls the subroutine bar. Bar does not have the parameters so it adopts the value of lex from the outside subroutine into its own value of lex. After that, the value of lex is assigned to 5, and the first call to foo is finished. During the second call to foo, the same steps occur, this time the subroutine bar already has a value for the variable lex. So when foo(3) calls bar, bar will not need to and will not retreive a value for lex from te outside subroutine and will use its value for lex it got from the previous foo call.
+
+6) When we run the program, it gives us the answers 3 and 99. When we run the program again, we get 3 and a runtime error. The reason why this happens is because the statement y = 99 is not within scope of the print y statement. Y loses scope when the program leaves the code block it is in. The y = 2 extended the scope of y to allow it to be printed using the print y statement, so when its value is changed, its state is changed, and allows the value to be printed.
+
+7. We noted in Section 6.1.1 that most binary arithmetic operators are left- associative in most programming languages. In Section 6.1.4, however, we also noted that most compilers are free to evaluate the operands of a binary operator in either order. Are these statements contradictory? Why or why not? 
+This is not contradictory. Saying that compilers are free to evaluate in any order does not mean that they would evaluate them as left associative half the time. Compilers tend to evaluate arithmetic operators the same way language language designers intended it to be.
+					
+8. Is &(&i) ever valid in C? Explain.
+ 	No,  ‘&’ takes an L value and returns a R value, this statement would be making the outer ‘&’ to take an R value so it would never be valid. 
+
+9.In Section 6.1.2 (“Orthogonality”), we noted that C uses = for assignment and == for equality testing. The language designers state: “Since assignment is about twice as frequent as equality testing in typical C programs, it’s appropriate that the operator be half as long” [KR88, p. 17]. What do you think of this rationale?
+
+I think this rationale is sound. Consider this, comparison requires two values, which often happens to be variables. These variables are given a value prior to the comparison via assignment. However, assignment does not accompany comparison nearly as much as comparison follows assignment. This means, a variety of operations can follow an assignment, not just a comparison, but comparison almost always requires some sort of value to be assigned first before it is compared.  

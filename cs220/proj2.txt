@@ -1,0 +1,253 @@
+#include <math.h>
+#include <stdbool.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+
+typedef unsigned long floatx;
+floatx doubleToFloatx(double, int, int);
+int binaryToString(double , char [], int);
+
+//int binaryToStringD(long double , char [], int, double);
+
+void setBit(long *,int,int);
+void setToLong(long *,char[],int , int);
+
+int main (int argc, char **argv){
+
+if(argc < 3){
+  printf("Please invoke again");
+  return 1;
+}
+
+int totBits = atoi(argv[1]);
+int expBits = atoi(argv[2]);
+if(totBits <= 2 || totBits >= 65 ){
+  printf("Total number of bits must be between 3 - 64\n");
+  return 1;
+}
+if(expBits<=0 || expBits > totBits - 2){
+  printf("Total number of exponent bits must be from 0 - (totBits - 2)\n");
+  return 1;
+}
+
+
+
+  while(!feof(stdin)) {
+  double in=NAN; // NAN defined in math.h
+  if(1==scanf("%lf ",&in)) {
+  //  in = in *10000.0;
+   floatx fx = doubleToFloatx(in,totBits,expBits);
+   printf("%14.8g = floatx(%d,%d) : %016lx\n",in,totBits,expBits,fx);
+  } else {
+    char buf[100];
+    scanf("%s ",buf);
+  printf("Input : %s not recognized as a double\n",buf);
+  }
+}
+
+
+}
+
+
+floatx doubleToFloatx(double in, int totBits, int expBits){
+int mantisaSize = totBits - (expBits + 1); /*expBits + 1 accounts for the signed bit*/
+//int Integral = (int)in; //getting the first part
+double Integral ;
+//double fpart = in - (long)in; //the second part
+double fpart = modf((in), &Integral);
+printf("fraction: %f, Integer: %f",fpart, Integral );
+char bin [totBits];
+int i = binaryToString(Integral, bin, 0);
+
+
+ bin[i] = '\0';
+
+bin[i] = '.';
+printf("\nBINARY NUM: ");
+for(int i =0; i < strlen(bin); i++){
+  printf("%c",bin[i]);
+}
+
+
+
+int x =  mantisaSize;
+i++;
+while (x --){
+  fpart *=2;
+  int bit = fpart;
+
+  if(bit == 1){
+    fpart -= bit;
+    bin[i] = (1 +'0');
+  }
+  else bin[i] = 0 +'0';
+  i++;
+}
+bin[i] = '\0';
+
+
+
+int current_pos;
+for(int i = 0; i < strlen(bin); i++){
+  if('.' == bin[i]){
+    current_pos = i;
+    break;
+  }
+  current_pos = i;
+}
+
+int swaps = 0;
+char temp;
+while (current_pos > 1){
+  //SWAP
+  temp = bin[current_pos];
+  bin[current_pos] = bin[current_pos-1];
+  bin[current_pos-1] = temp;
+  current_pos--;
+  swaps++;
+}
+
+////////////////////MANTISA//////////////////
+char mantisa[mantisaSize];
+int counterMantisa=0;
+for (int i = 2; i <  mantisaSize+2; i++){ //+2 because we are starting at index 2 and we want to go up to the mantisa size but because we are starting at 2 , we
+                                          //will add the two indexes that we "missed" to get the full mantisaSize
+  mantisa[counterMantisa] = bin[i];
+  counterMantisa++;
+}
+
+/////////////////// EXPONENT////////////////
+printf("\nSWAPS: %d ", swaps);
+char exp[expBits];
+int counterExpField = binaryToString(127+swaps, exp ,expBits); //assigning the exponent
+printf("EXP FIELD:");
+for(int i = 0; i < counterExpField; i++){
+printf( "%c", exp[i]);
+}
+exp[counterExpField] = '\0';
+printf("\n");
+/////////////////////////////////////
+
+printf("BINARY FLOATING POINT FORMAT\n");
+for(int i = 0; i < strlen(bin); i++){
+printf("%c", bin[i]);
+}
+
+floatx binary = 0UL;
+
+
+int complete[64];
+int tracker = 0;
+
+if((counterMantisa+counterExpField+1)<65){
+  for(int i = 0; i < 64 - totBits; i++){
+    complete[i] = 0;
+    tracker++;
+  }
+}
+
+
+if(totBits > totBits - (counterMantisa + counterExpField+1)){
+  for(int i = tracker; i < totBits - (counterMantisa + counterExpField+1); i++){
+    complete[i] = 0;
+    tracker++;
+  }
+}
+
+//sign change laterVV-----
+if(Integral > 0)
+complete[tracker] = 0;
+else complete[tracker] = 1;
+
+for(int i = 0; i < strlen(exp); i++){
+  tracker++;
+  if(exp[i] == '1') complete[tracker] = 1;
+  else complete[tracker] = 0;
+}
+
+for(int i = 0; i < strlen(mantisa); i++ ){
+  tracker++;
+  if(mantisa[i] == '1') complete[tracker] =1;
+  else complete[tracker]=0;
+}
+printf("\nCOMPLETE ARRAY\n");
+for(int i = 0; i <64; i++){
+  if(i%4 ==0) printf(" ");
+  printf("%d", complete[i]);
+}
+
+
+tracker = 0;
+for(int i = 64; i >= 0; i--){
+  floatx mask = complete[i];
+  mask = mask << (tracker-1);
+  binary |= mask;
+  tracker++;
+
+}
+
+printf("\n-------------------------------------------\n");
+
+
+return binary;
+
+
+
+}
+void setToLong(long *in, char arr[], int limit, int start){
+
+}
+
+
+void setBit(long * in,int ind,int val) {
+
+	unsigned long mask = val;
+/*	mask = mask<<ind; // Shift the 1 in the rightmost bit to the left ind positions
+	if (val) (*in) |= mask; // Turn on bit under mask
+	else (*in) &=~mask; // Turn off bit under mask
+*/
+
+mask = (mask << ind);
+
+(*in) |= (mask) ;
+
+
+
+
+}
+
+
+
+
+
+
+
+int binaryToString(double Integral, char bin[], int limit){
+int i = 0;
+  while(Integral > 0){  //calculating in binary from decimal using the division theorem. (remainder)/
+    bin[i++]  = (int)fmod(Integral , 2) + '0';
+    Integral = floor(Integral / 2);
+  }
+  bin[i] = '\0';
+
+  while(i<limit){
+    bin[i] = '0';
+    i++;
+  }
+
+//REVERSE//
+char holder[strlen(bin)];
+int counter = i-1;
+int j;
+for( j =0; j < i; j++){//reverse count
+  holder [j] = bin[counter];
+  counter--;
+}
+for(int j =0; j < i; j++){//put it back to original/
+  bin [j] = holder[j];
+}
+bin[i] = '\0';
+return i;
+}

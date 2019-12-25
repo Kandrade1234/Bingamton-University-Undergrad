@@ -1,0 +1,1 @@
+for project 8 i will be attempting to create a 3d style fill in the background game. It will detect user swipes and the goal will be to control a player and color the whole background. I will, try to make it as preety as possible.

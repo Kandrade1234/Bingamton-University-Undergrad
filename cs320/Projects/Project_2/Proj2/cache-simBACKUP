@@ -1,0 +1,206 @@
+#include <iostream>
+#include <sstream>
+#include <fstream>
+#include <math.h>
+#include <cmath>
+#include <cstdlib>
+#include <iomanip>
+using namespace std;
+/*Global Variables*/
+int associativity = 2;
+/** DirectMapped functions **/
+void directMappedInit(int entries, unsigned long long directCache []);
+int directMapped(unsigned long long directCache[], int indexD, int cacheEntries, unsigned long long &tagDirect, unsigned long long addr);
+
+/** SetAssociative functions **/
+void setAssocInit(unsigned long long *setAssoc, unsigned long long *LRUsetAssoc, int cacheRows);
+int setAssociative(int associativity, int cacheRows, unsigned long long *setAssoc, unsigned long long *LRUsetAssoc,int indexSetAssc, unsigned long long tagSetAssoc, unsigned long long addr);
+
+int main(int argc, char *argv[])
+{
+  if(argc != 3){
+     cout << "Incorrect number of inputs, please provide an input file and the name of an output file.\n";
+     exit(-1);
+   }
+  string inputF = argv[1];
+  string outputF = argv[2];
+
+  unsigned long long addr;
+  string instruction, line;
+  double total = 0;
+
+  /** Direct mapped initialization **/
+  int hitD1KB = 0;
+  int hitD4KB = 0;
+  int hitD16KB = 0;
+  int hitD32KB = 0;
+  //Total Cache / cacheLineSize
+  int cacheEntries1KB = 32;
+  int cacheEntries4KB = 128;
+  int cacheEntries16KB = 512;
+  int cacheEntries32KB = 1024;
+
+  int indexD1KB = 0;
+  int indexD4KB = 0;
+  int indexD16KB = 0;
+  int indexD32KB = 0;
+
+  unsigned long long tagDirect1KB =0;
+  unsigned long long tagDirect4KB =0;
+  unsigned long long tagDirect16KB =0;
+  unsigned long long tagDirect32KB =0;
+
+  unsigned long long directCache1KB [32];
+  unsigned long long directCache4KB [128];
+  unsigned long long directCache16KB [512];
+  unsigned long long directCache32KB [1024];
+
+  directMappedInit(cacheEntries1KB, directCache1KB);
+  directMappedInit(cacheEntries4KB, directCache4KB);
+  directMappedInit(cacheEntries16KB, directCache16KB);
+  directMappedInit(cacheEntries32KB, directCache32KB);
+
+  /** Set associative initialization **/
+  int hitSA2w = 0;
+  int hitSA4w = 0;
+  int hitSA8w = 0;
+  int hitSA16w = 0;
+
+
+  // Total Cache/(ways x cache line size)
+  int cacheRows2W = 256;
+  int cacheRows4W = 128;
+  int cacheRows8W = 64;
+  int cacheRows16W = 32;
+
+  int indexSetAssc2w = 0;
+  int indexSetAssc4w = 0;
+  int indexSetAssc8w = 0;
+  int indexSetAssc16w = 0;
+
+  unsigned long long tagSetAssoc2W = 0;
+  unsigned long long tagSetAssoc4W = 0;
+  unsigned long long tagSetAssoc8W = 0;
+  unsigned long long tagSetAssoc16W = 0;
+
+  unsigned long long setAssoc2w [256][2];
+  unsigned long long setAssoc4w [128][4];
+  unsigned long long setAssoc8w [64][8];
+  unsigned long long setAssoc16w [32][16];
+
+  unsigned long long LRUsetAssoc2w [256][2];
+  unsigned long long LRUsetAssoc4w [128][4];
+  unsigned long long LRUsetAssoc8w [64][8];
+  unsigned long long LRUsetAssoc16w [32][16];
+
+
+  setAssocInit(&setAssoc2w[0][0], &LRUsetAssoc2w[0][0],cacheRows2W);
+  associativity = 4;
+  setAssocInit(&setAssoc4w[0][0], &LRUsetAssoc4w[0][0],cacheRows4W);
+  associativity = 8;
+  setAssocInit(&setAssoc8w[0][0], &LRUsetAssoc8w[0][0],cacheRows8W);
+  associativity = 16;
+  setAssocInit(&setAssoc16w[0][0], &LRUsetAssoc16w[0][0],cacheRows16W);
+
+
+
+
+
+  /** Reading Trace Files **/
+  ifstream input(inputF.c_str());
+  if(input.is_open()){
+    ofstream fout(outputF.c_str());
+    while(getline(input, line))
+    {
+      stringstream ss(line);
+      ss>>instruction>>std::hex>>addr;
+      total++;
+
+      //** Diredt Mapped Cache Simulation **//
+      hitD1KB += directMapped(directCache1KB, indexD1KB, cacheEntries1KB, tagDirect1KB, addr);
+      hitD4KB += directMapped(directCache4KB, indexD4KB, cacheEntries4KB, tagDirect4KB, addr);
+      hitD16KB += directMapped(directCache16KB, indexD16KB, cacheEntries16KB, tagDirect16KB, addr);
+      hitD32KB += directMapped(directCache32KB, indexD32KB, cacheEntries32KB, tagDirect32KB, addr);
+
+      //** Set Associative Cache Similation **//
+      associativity = 2;
+      hitSA2w += setAssociative(associativity, cacheRows2W, &setAssoc2w[0][0], &LRUsetAssoc2w[0][0], indexSetAssc2w, tagSetAssoc2W, addr);
+
+
+
+    }
+
+    /** Writing to file **/
+    fout << std::fixed << std::setprecision(0)<< hitD1KB << "," << total <<"; " << hitD4KB << "," << total << "; " << hitD16KB << "," << total <<"; "<< hitD32KB << "," << total<<";\n";
+    fout << hitSA2w << "," << total << "; \n";
+  }
+  else cout << "File not found!/n";
+  return 0;
+}
+
+
+
+/**DIRECT MAPPED FUNCTION DEFINITIONS**/
+void directMappedInit(int entries, unsigned long long directCache[])
+{
+  for(int i = 0; i < entries; i++)
+    directCache[i] = 0;
+}
+int directMapped(unsigned long long directCache[], int indexD, int cacheEntries, unsigned long long &tagDirect, unsigned long long addr)
+{
+  //This will get us the index to index into
+  indexD = (addr >> 5) % cacheEntries;
+  tagDirect = addr>>((unsigned long long)(log2(cacheEntries)) + 5);
+  if(directCache[indexD] == tagDirect) return 1;  //Hit
+  else directCache[indexD] = tagDirect;           //Miss
+  return 0;
+}
+
+/** SETASSOCIATIVE FUNCTION DEFINITIONS **/
+void setAssocInit(unsigned long long *setAssoc, unsigned long long *LRUsetAssoc, int cacheRows){
+  for(int i = 0; i < cacheRows; i++){
+    for (int j = 0; j < associativity; j++){
+      setAssoc[i * associativity + j] = -1;
+      LRUsetAssoc[i * associativity + j] = j;
+    }
+  }
+}
+int setAssociative(int associativity,int cacheRows, unsigned long long *setAssoc, unsigned long long *LRUsetAssoc,int indexSetAssc, unsigned long long tagSetAssoc, unsigned long long addr)
+{
+  indexSetAssc = (addr>>5)%cacheRows;
+  tagSetAssoc = addr>>((unsigned long long)log2(cacheRows)+5);
+  int LRUIndex  = -1;
+  int indexWay = 0;
+  bool found = false;
+  for(int i = 0; i < associativity; i++)
+  {
+    if(setAssoc[indexSetAssc*associativity+i] == tagSetAssoc){
+      found = true;
+      indexWay = i;
+      break;
+    }
+  }
+  if(found) //hit
+  { //looking for the index of set associative in LRU matrice..
+    for(int i = 0; i <  associativity; i++)
+    {
+      if(LRUsetAssoc[indexSetAssc*associativity+i] == indexWay){   //found the index of set associative in LRU
+         LRUIndex = i;
+         break;
+       }
+    }
+    //we will update LRU (least recently used to the end of the array while everything else gets shifted to the right)
+    for(int i = 0; i < LRUIndex; i++) LRUsetAssoc[indexSetAssc * LRUIndex + (LRUIndex - i)] = LRUsetAssoc[indexSetAssc*LRUIndex+((LRUIndex -i)-1)];
+    LRUsetAssoc [indexSetAssc * LRUIndex + 0] = indexWay;       //Updating most recently used
+    return 1;
+  }
+  else    //not found
+  {
+    unsigned long long temp = LRUsetAssoc[indexSetAssc * associativity+(associativity - 1)];   //saving the INDEX of the least recently used.
+
+    //Moving everything over
+    for(int i = 1; i < associativity; i++)  LRUsetAssoc[indexSetAssc * associativity + (associativity - i)] = LRUsetAssoc[indexSetAssc * associativity + ((associativity - i) -1)];
+    LRUsetAssoc[indexSetAssc * associativity + 0] = temp;  //most revently used now
+    setAssoc[indexSetAssc * associativity + (LRUsetAssoc[indexSetAssc * associativity + 0])] = tagSetAssoc;
+  }
+}

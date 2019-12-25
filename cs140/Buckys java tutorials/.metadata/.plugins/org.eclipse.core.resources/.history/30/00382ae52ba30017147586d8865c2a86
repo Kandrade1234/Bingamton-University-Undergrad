@@ -1,0 +1,13 @@
+
+public class tuna extends food{
+
+	public void eat()
+	{
+		
+		System.out.println("I am the new method of tuna");
+		System.out.println("I Inheretid from my parent class and added on");
+	}
+	
+	
+	
+}

@@ -1,0 +1,33 @@
+import java.util.ArrayList;
+
+public class ExtraSelect extends Select {
+
+	private ArrayList<Filter> list = new ArrayList<Filter>();
+
+	public ExtraSelect(ArrayList<Integer> input, Filter Tester){
+		super(input, Tester);
+	}
+
+	public void add(Filter f){
+		list.add(f);
+	}
+
+	@Override
+	public boolean apply(int n){
+		boolean tester = false;
+
+		if(super.apply(n)){
+			for(int i = 0; i < list.size(); i++){
+				if(list.get(i).test(n)){
+					tester = true;
+				}
+				if(!list.get(i).test(n))
+					tester = false;
+
+			}
+		}
+		return tester;
+
+
+	}
+}

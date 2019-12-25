@@ -1,0 +1,19 @@
+package Question3;
+
+public class Ques {
+
+	private String text;
+	private String answer;
+	
+	public Ques(int x, char op, int y){
+		text = "What is "+ x + op + " " + y;
+		if(op == '+') {
+			int ans = x + y;
+			String Builder in = new String Builder();
+		
+		}
+	}
+	
+	
+	
+}

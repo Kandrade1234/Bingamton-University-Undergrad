@@ -1,0 +1,97 @@
+/*
+ ============================================================================
+ Name        : hw3.c
+ Author      :
+ Version     :
+ Copyright   : Your copyright notice
+ Description : Hello World in C, Ansi-style
+ ============================================================================
+ */
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <stdbool.h>
+
+//void sort(char[]* , char[]*);
+bool equal(char*[], char*[]);
+
+
+int main(int argc, char **argv){
+
+  char input1[] = argv[1];
+  char input2[] = argv[2];
+
+  int length1 = strlen(input1);
+  int length2 = strlen(input2);
+
+  if(length1 != length2){
+    printf(" %s is not an angram of %s\n",input1, input2);
+  }
+
+
+//remove(input1, input2);
+int j = 0;
+//delte underscores for input1
+ for ( int i = 0; input1[i] != '\0'; i++ )
+ {
+    if ( input1[i] != "_" )
+    {
+       input1[j++] = input1[i];
+ }
+ input1[j] = '\0';
+}
+int x =0;
+//delete underscores for input2
+for ( int y = 0; input2[y] != '\0'; y++ )
+{
+   if ( input2[y] != "_" )
+   {
+      input2[x++] = input2[y];
+}
+input2[j] = '\0';
+}
+/////
+
+
+char temp;
+
+//sort first and second char array
+for(int i =0; i < length1-1; i++){
+  for (int j =i+1; i <length2-1; j++){
+    if(input1[i] > input1[j]){
+    temp = input1[i];
+    input1[i]= input1[j];
+    input1[j] = temp;
+  }
+  if(input2[i] > input2[j]){
+    temp = input2[i];
+    input2[i]= input2[j];
+    input2[j] = temp;
+  }
+}
+
+
+
+
+
+}
+}
+bool equal(char* a[], char*b[]){
+int size1 =0;
+int size2 =0;
+  for(int i =0; a[i]; i++){
+    a[i] = Character.toUpperCase(a[i]);
+    size1++;
+  }
+  for(int j =0; b[j]; j++){
+    b[j] = tolower(b[j]);
+    size2++;
+  }
+if(size1 != size2) return false;
+
+if(strcmp(a,b) == 0) return true;
+
+return false;
+
+}

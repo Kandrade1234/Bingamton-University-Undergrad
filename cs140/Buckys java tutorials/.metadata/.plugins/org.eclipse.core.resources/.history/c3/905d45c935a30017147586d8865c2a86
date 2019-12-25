@@ -1,0 +1,12 @@
+
+public class tuna extends food{
+
+	
+	
+	public tuna (String nam)
+	{
+		super(nam);
+	}
+	
+	
+}

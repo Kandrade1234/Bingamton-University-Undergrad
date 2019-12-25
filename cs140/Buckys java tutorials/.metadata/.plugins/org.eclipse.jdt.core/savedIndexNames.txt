@@ -1,0 +1,3 @@
+INDEX VERSION 1.130+/Users/kevinandrade/cs140/Buckys java tutorials/.metadata/.plugins/org.eclipse.jdt.core
+4233137170.index
+2256573114.index

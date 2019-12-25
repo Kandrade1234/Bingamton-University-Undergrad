@@ -1,0 +1,75 @@
+Chris Glasheen, Kevin Andrade
+
+1.
+foo is a function that takes two arguments, being a pointer to a function that takes two arguments of a double and double array which returns a double, and a double, which returns a pointer to a function that takes two arguments, being a double and anything else, which returns a double.
+
+2.
+k=3
+i+1: Adding 1 to a pointer really adds the size of whatever type the pointer represents. Integers are 4 bytes, so i+1=4.
+i+k: Similar to the previous line, we are adding 3 to the pointer. 0+3*4 bytes=12 byte offset, so 12 is printed.
+k: Since k=3, the third output is 3.
+a+k: The size of a struct A is 12 bytes (4 ints), so adding 3 to "a" actually adds 3*the size of A, so 0+3*12=36.
+&(a[9]): This is the same as a+9, so 9*12=108.
+&(a[9]) - (a+1): We know &(a[9])=108. a+1 is 0+the size of a, which is 12. The subtraction finds the number of memory blocks between the specified memory locations, so we can calculate this by (108-12)/12, which is 8.
+
+3.
+a. squareF(3) = 9
+b. SQUARE(3) = 9
+c. squareF(6-2) = 16, SQUARE(6-2) = -8
+
+4.
+A. Pass by value:
+   0 2 1 0 2
+   0 2 1 0 2
+The global values aren't changed, only the temporary local values x and y within mys
+
+B. Pass by reference:
+   2 0 1 0 2
+   2 0 0 1 2
+When passing by reference, the mys function swaps the values of the variables that are passed in.
+The first call swaps the values of i and a[0], so i becomes 2 and a[0] becomes 0.
+The second call swaps the values of a[1] and a[2], so a[1] becomes 0 and a[2] becomes 1.
+
+C. Pass by value-result:
+   2 0 1 0 2
+   2 0 0 1 2
+This result is the same as the previous one, but it is reached in a slightly different way.
+In both of the calls, the variables are passed by value but the updated values within the mys function are assigned to the original variables when the function returns.
+
+D. By macro-expansion:
+   0 2 1 2 2
+   0 1 2 2 2
+This is almost certainly not the desired effect.
+Since macros just replace code, a[i] has different meanings at different points of execution, rather than just being one memory location like in the previous two examples.
+In the previous two examples, the memory locations of the arguments were determined when the function was called, meaning that the code would only affect those locations.
+With pass by macro-expansion, the first call to mys would look like this when expanded:
+   i = i + a[i];    //a[i] = a[0], i becomes 2
+   a[i] = i - a[i]; //a[i] = a[2], a[2] becomes 2
+   i = i - a[i];    //a[i] = a[2], i becomes 0
+As you can see, since i is altered on the first line, the a[i] on the second line isn't referring to the same memory location as the a[i] on the first line. This effect isn't seen in the second call because i is not altered:
+   a[1] = a[1] + a[i]; //a[i] = a[0], a[1] becomes 3
+   a[i] = a[1] - a[i]; //a[i] = a[0], a[0] becomes 1
+   a[1] = a[1] - a[i]; //a[i] = a[0], a[1] becomes 2
+
+E. Pass by name:
+   0 2 1 2 2
+   0 1 2 2 2
+This result is the same as the macro-expansion result, but it is reached in a slightly different way.
+Arguments aren't evaluated before the call to the function. Instead, they are evaluated whenever they are referenced within the function (lazy evaluation). So, similar to the previous example's first call to mys, the meaning of a[i] changes when i is altered because the meaning of a[i] isn't set in stone before the function body executes.
+
+5.
+page 523 CYU 42
+It is used as a solution to multiple inheritance problems. It is often difficult to design a perfect inheritance tree.  Mix-in inheritance is when the “parents” are defined as interfaces and the children can “mix-in” these parents for the purposes they need and provide their own implementation. This will make it so each child has a true parent.
+
+page 523 CYU 45
+True multiple inheritance will allow child classes to inherit functionality of code already defined from parent classes. In Mix-in inheritance all methods that are not provided by the “parent” class are mixed in and are usually abstract and must have an implementation for every child that wants to use it.
+
+6.
+For this particular example bar has two b fields, one is an int and the other is a char pointer. You can access them both, but in different ways. Let’s say we declare an instance of bar called x. The value of b that is associated with bar can be gotten simply with x.b. The value of b that is associated with foo can be gotten by using the scope resolution operator, x.foo::b.
+
+7.
+Since an abstract class cannot be implemented, declaring it as “type foo” would be incorrect and forbidden. The reason that we can use it as a pointer is because we can later assign its memory location with the value of a class derived from that abstract class. This isn't an issue for java because in java you end up creating an instance of an anonymous subclass of our abstract class.
+
+8.
+In C++ you can declare non virtual member functions with the same signature in inheriting classes. In java , declaring methods with the same signature in which the base class declares the method final  is forbidden. In C++ virtuality is just a way to help find the correct function to call when dealing with inheritance/polymorphism. Overall, both methods have similar goals; which is to prevent the overriding of a function in the base class.
+   

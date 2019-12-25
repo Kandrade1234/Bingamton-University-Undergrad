@@ -1,0 +1,27 @@
+import java.util.ArrayList;
+public class SubStore extends Store {
+
+	private int evens =0;
+
+	public SubStore(ArrayList<Integer> list, Filter in){
+		super(list, in);
+		for(int i =0; i < list.size(); i ++){
+			for(int j =0; i < list.size(); j++){
+				if(list.get(j) %2 == 0)
+					evens = evens+1;
+			}
+		}
+	}
+		@Override
+		public void add(int j){
+			super.add(j);
+			if(j % 2 == 0)
+				evens = evens +1;
+		}
+
+		public int getEvens(){
+			return evens;
+		}
+
+
+	}

@@ -1,0 +1,9 @@
+package shapes;
+
+public class rectangle extends Shapes
+{
+	public rectangle (int x, int y, int z, String a)
+	{
+		super(x, y, z, a);
+	}
+}

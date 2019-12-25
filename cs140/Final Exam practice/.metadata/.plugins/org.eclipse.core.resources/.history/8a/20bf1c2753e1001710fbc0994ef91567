@@ -1,0 +1,50 @@
+package Question3;
+
+import java.util.Scanner;
+
+public class Ques {
+
+	private String text;
+	private String answer;
+
+	public Ques(int x, char op, int y){
+		text = "What is "+ x + op + " " + y;
+		if(op == '+') {
+			int ans = x + y;
+			answer =Integer.toString(ans);
+
+		}
+		if(op == '-') {
+			int ans = x - y;
+			answer =Integer.toString(ans);
+
+		}
+		if(op == '*') {
+			int ans = x * y;
+			answer =Integer.toString(ans);
+
+		}
+		if(op == '/') {
+			int ans = x / y;
+			answer =Integer.toString(ans);
+
+		}
+	}
+	public boolean checkAnswer(int ans){
+		if(Integer.toString(ans) == answer) return true;
+		return false;
+	}
+
+	public void display(){
+		System.out.println(text);
+	}
+	public void presentQuestion() {
+		display();
+		Scanner in = new Scanner(System.in);
+		int response = in.nextInt();
+		System.out.println(checkAnswer(response));
+	}
+
+
+
+}

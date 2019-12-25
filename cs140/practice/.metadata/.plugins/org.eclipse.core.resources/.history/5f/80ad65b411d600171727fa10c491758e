@@ -1,0 +1,25 @@
+package exam02;
+
+public class Recursion {
+
+	
+	public static int maxElement(ArraList<Integer> list){
+		if(list.size() == 1)
+			return list.get(0);
+		else 
+			Math.max(a, b)
+	}
+	
+	public static int gcd(int a, int b){
+		
+		if(b == 0)
+			return a;
+		else 
+			return gcd(b, a %b);
+		
+		
+	}
+	
+	
+	
+}

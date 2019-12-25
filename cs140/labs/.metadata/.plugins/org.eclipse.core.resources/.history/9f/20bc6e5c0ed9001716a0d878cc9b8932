@@ -1,0 +1,9 @@
+package projectview;
+
+import java.util.Observable;
+import project.machineModel;
+
+public class ViewMediator extends Observable
+{
+	
+}

@@ -1,0 +1,131 @@
+Kevin Andrade
+HOMEWORK 1
+
+1)
+function selectListsWithLengthMultiple(lists, multiple=2){ 
+  return lists.filter(x => !(x.length % multiple));
+}
+
+2)
+
+function reverse(text){
+	return text.split("").reverse().join("");
+}
+
+3)
+
+function isPalindrome(text){
+  return text.toLowerCase().replace(/\W+/g, '').split("").join("") === text.toLowerCase().replace(/\W+/g, '').split("").reverse().join("");
+}
+
+
+4)
+
+function minLenArg(...objs){
+	return objs.reduce((smallest, i) => i.length < smallest.length ? i : smallest, 
+    objs[0]);
+ }
+
+
+5)
+function formatInt(int, {base=10, n=3, sep=','} = 
+                    {base: 10, n:3, sep: ','}){
+  return int.toString(base).split('').reverse().reduceRight((acc,c,i) => acc + c +( n <= 0 || !i || i % n ? '' : `${sep}`) , '');
+
+}
+
+6)
+function isEvenParity(int){
+   return !(int.toString(2).split('').filter(x => x > 0).length % 2);
+}
+
+7)
+function bitIndexesToInt(indexes){
+  return indexes.sort().reduce((acc,e,i) =>  acc + (e >=0 ? 1 << e : 0), 0);
+  
+}
+
+
+8)
+function intToBitIndexes(int){
+	return (int).toString(2).split('').reverse().reduceRight((acc,e,i) =>  acc.concat([e > 0 ? i : "" ]),[]).join('').split('').reverse() ;
+}
+
+
+9)
+I used some help from https://stackoverflow.com/questions/6491463/accessing-nested-javascript-objects-with-string-key
+function multiIndex(obj, indexes){
+  
+  return indexes.split('.').reduce((prev, i) => prev  ? prev[i] : null, obj || self);
+}
+
+
+
+
+
+
+10)
+function zip(list1, list2){
+  return list1.map((e,i)=> [e,list2[i]]);
+}
+
+
+11)
+function  multiZip(...lists){
+  return lists[0].map((_,i)=>lists.map((lists)=>lists[i]));
+  
+}
+
+12)
+function multiZipAny(...lists){
+	return lists.reduce((a,b) => a.length < b.length ? a : b).map((_,i)=>lists.map((lists)=>lists[i]));
+  
+}
+
+13) Depending on the implementation of the project results might or might not have to be modified later. The const will prevent it from being modified but that can be intentional. The next thing that should be changed is the line of 'if(result[key] == null)' this is redundant since if result[key] is null you can simply write it as if(!result[key]) which would return it as a false value and then you go into your if statement. Since little is known about the contents my if statement can also be trouble since what if there's a 0 or an empty string there that is supposed to be intentional. The log statement is also bad. Again, little is known for what the code is supposed to be doing but my guess is that the log statement should really say 'console.log(`results at ${key} is not defined`. Key can be defined but it might just be that at that index there is nothing so it isn't that the key isn't defined, it can be the data inside. Also errors should be thrown as objects not printed out to the console.
+
+Assuming that results won't contain an empty or 0 then my version would be like
+
+Const results = ...;
+if(!results[key]) 
+	throw [ `cannot find results for key=${key}` ];
+	or return [ `cannot find results for key=${key}` ]	//depending if I had a try catch before hand.
+.
+.
+.
+Rest of code.
+.
+.
+Now I can also do a ternary operator for a short else
+Const result = ...;
+
+!results[key] ? return [ `cannot find results for key=${key}` : .......<- some other function call, etc. 
+ 
+Or even better Instead of checker results[key] = null I can simply
+
+if(typeof results[key])
+	throw [ `cannot find results for key=${key}` ];
+
+14)
+https://www.toptal.com/javascript/comprehensive-guide-javascript-design-patterns
+One of the patterns that stood out to me was the Singleton Pattern. 
+Singleton Pattern:
+A singleton is an object that can be instantiated only once. If you try to create another one or repeated calls to the constructer would always fetch the same object. Javascript has these built into the language. Javascript objects are always passed by reference which results in unique memory location for objects. If you assign one object to a variable and modify that variable, then that variable and object will be modified. Javascript does really well with this but with power comes responsibility.
+
+Another good thing javascript does is the Factory Pattern
+The factory Pattern:
+Its used to create objects without specifying the exact class or constructor. This works really well when a different object needs to be generated depending on conditions. Javascript can implement this really well by making a couple 'classes' and adding options within the constructor of what object to make. 
+
+Prototype Pattern
+This is one of the best patterns for javascript. The prototype pattern is an object creational design pattern where we use a "skeleton" of an existing object to create a new one. Thanks to the prototypal inheritance from javascript (no private members) we can use this to our advantage when creating other objects.  
+
+15)
+A) the reason why fat arrow function won't work is because the 'this' word is undefined(arrow functions provide a lexical this). Arrow functions automatically bind context.  Does not determine dynamically. The this would be referred to surrounding scope instead of the object. 
+
+B)
+The way to fix this is to have the constructor be 
+
+function Rect(x, y, w, h) {
+	Shape.call(this, x, y);
+	this.width = w; this.height = h;
+}

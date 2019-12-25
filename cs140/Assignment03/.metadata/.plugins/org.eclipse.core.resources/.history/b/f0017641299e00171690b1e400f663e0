@@ -1,0 +1,79 @@
+package assignment03;
+import java.time.LocalDateTime;
+public class CalendarItem {
+
+	private LocalDateTime start;
+	private LocalDateTime end;
+	private String title;
+	private String description;
+	private String location;
+	private CalendarItem nextItem;
+	
+	public String getTitle(){
+		return title;
+	}
+	public void setTitle(String input){
+		title = input;
+	}
+
+	public String getDescription(){
+		return description;
+	}
+	public void setDescription(String input){
+		description = input;
+	}
+	
+	public String getLocation(){
+		return location;
+	}
+	public void setLocation(String input){
+		location = input;
+	}
+	
+	public CalendarItem getNextItem(){
+		return nextItem;
+	}
+	public void setNexItem(CalendarItem input){
+		nextItem = input;
+	}
+	
+	public void setEnd(LocalDateTime input){
+		if(start != null && start.isAfter(end))
+			throw new IllegalArgumentException("the start cannot be after end");
+		else
+			end = input; 
+	
+	}
+	public LocalDateTime getEnd(){
+		return end;
+	}
+	
+	
+	public void setStart(LocalDateTime input){
+		if(start != null && start.isAfter(start))
+			throw new IllegalArgumentException("the start cannot be after end");
+		else 
+			start = input;
+	
+	}
+	
+	public LocalDateTime getStart()
+	{
+		return start;
+	}
+	
+	public static void main(String[] args) {
+		CalendarItem test = new CalendarItem();
+		test.setDescription("this is just a sample meeting of CS 140");
+		test.setEnd(LocalDateTime.of(2017,9,11,11,50));
+		test.setStart(LocalDateTime.of(2017,9,11,10,50));
+		test.setTitle("CS 140");
+		test.setLocation("FA 212");
+		
+		System.out.println(test);
+	}
+	
+	
+	
+	
+}

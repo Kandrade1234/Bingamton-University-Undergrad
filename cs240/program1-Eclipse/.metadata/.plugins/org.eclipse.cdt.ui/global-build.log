@@ -1,0 +1,30 @@
+22:04:04 **** Incremental Build of configuration Release for project List.h ****
+make all 
+Building file: ../src/Program1.cpp
+Invoking: Cross G++ Compiler
+g++ -O3 -Wall -c -fmessage-length=0 -MMD -MP -MF"src/Program1.d" -MT"src/Program1.o" -o "src/Program1.o" "../src/Program1.cpp"
+../src/Program1.cpp:18:13: error: cannot initialize a new value of type 'Ant *' with an rvalue of type 'int'
+        one << new Ant * (1);
+                   ^      ~
+1 error generated.
+make: *** [src/Program1.o] Error 1
+22:04:06 **** Incremental Build of configuration Debug for project List.h ****
+make all 
+Building file: ../src/Program1.cpp
+Invoking: Cross G++ Compiler
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -MMD -MP -MF"src/Program1.d" -MT"src/Program1.o" -o "src/Program1.o" "../src/Program1.cpp"
+../src/Program1.cpp:18:13: error: cannot initialize a new value of type 'Ant *' with an rvalue of type 'int'
+        one << new Ant * (1);
+                   ^      ~
+1 error generated.
+make: *** [src/Program1.o] Error 1
+22:56:00 **** Incremental Build of configuration Debug for project List.h ****
+make all 
+Building file: ../src/Program1.cpp
+Invoking: Cross G++ Compiler
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -MMD -MP -MF"src/Program1.d" -MT"src/Program1.o" -o "src/Program1.o" "../src/Program1.cpp"
+../src/Program1.cpp:18:13: error: cannot initialize a new value of type 'Ant *' with an rvalue of type 'int'
+        one << new Ant * (1);
+                   ^      ~
+1 error generated.
+make: *** [src/Program1.o] Error 1

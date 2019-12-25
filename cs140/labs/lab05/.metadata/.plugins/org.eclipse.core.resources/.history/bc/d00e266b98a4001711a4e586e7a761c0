@@ -1,0 +1,44 @@
+package lab05;
+import java.util.ArrayList;
+import java.util.Arrays;
+public class FunWithStrings{
+
+
+public static void swapMaxes(ArrayList<String> list1, ArrayList<String> list2)
+{
+	String hold1 = null;
+	int index1 = 0 ;
+	
+	for (int i =0; i < list1.size(); i++)
+	{
+		for (int j =i+1; i < list1.size(); i++)
+			{
+			   if( list1.get(i).length() < list1.get(j).length())
+				{
+					hold1 = list1.get(j);
+					index1 = j;
+				}
+			}
+	}	
+	String hold2 = null;
+	int index2 = 0;
+	for (int i =0; i < list2.size(); i++)
+	{
+		for (int j =i+1; i < list2.size(); i++)
+			{
+			   if( list1.get(i).length() < list1.get(j).length())
+				{
+					hold2 = list1.get(j);
+					index2 = j;
+				}
+			}
+	}
+
+	list1.set(index2, hold2);
+	list2.set(index1, hold1);
+		
+}
+
+
+
+}

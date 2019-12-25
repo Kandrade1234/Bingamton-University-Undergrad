@@ -1,0 +1,8 @@
+LaunchTargetManager/org.eclipse.launchbar.core.launchTargetType.local,Local/arch=x86_64
+LaunchTargetManager/org.eclipse.launchbar.core.launchTargetType.local,Local/os=macosx
+configDescList=org.eclipse.launchbar.core.descriptorType.default\:Recursion,org.eclipse.launchbar.core.descriptorType.default\:Question2,org.eclipse.launchbar.core.descriptorType.default\:Driver,org.eclipse.launchbar.core.descriptorType.default\:Util,org.eclipse.launchbar.core.descriptorType.default\:StrUtilTest,org.eclipse.launchbar.core.descriptorType.default\:Recurse,org.eclipse.launchbar.core.descriptorType.default\:SubStoreTest,org.eclipse.launchbar.core.descriptorType.default\:Ques2Test,org.eclipse.launchbar.core.descriptorType.default\:Question4,org.eclipse.launchbar.core.descriptorType.default\:Tester
+eclipse.preferences.version=1
+org.eclipse.launchbar.core.descriptorType.default\:Question2/activeLaunchMode=run
+org.eclipse.launchbar.core.descriptorType.default\:Question2/activeLaunchTarget=org.eclipse.launchbar.core.launchTargetType.local\:Local
+org.eclipse.launchbar.core.descriptorType.default\:Recursion/activeLaunchMode=run
+org.eclipse.launchbar.core.descriptorType.default\:Recursion/activeLaunchTarget=org.eclipse.launchbar.core.launchTargetType.local\:Local

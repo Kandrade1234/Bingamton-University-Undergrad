@@ -1,0 +1,14 @@
+PHASE 1
+Too much agrement kills a chat.
+
+PHASE 2
+0 1 1 2 3 5
+http://zpalexander.com/binary-bomb-lab-phase-2/
+
+
+PHASE 3-----something to do with secret phase when you output one of the memory locations (comments) saying that i defused the secret phase…..
+
+0 -1183
+
+Phase 4
+60 3

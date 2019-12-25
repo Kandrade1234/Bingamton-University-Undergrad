@@ -1,0 +1,20 @@
+import java.util.ArrayList;
+public class Driver {
+	public static void main(String[] args) {
+		ArrayList<Integer> lst = new ArrayList<>();
+		lst.add(5);
+		lst.add(7);
+		lst.add(9);
+		lst.add(12);
+		lst.add(15);
+		lst.add(16);
+		lst.add(25);
+		Select p = new Select(lst, n->n % 2 != 0);
+		System.out.println(p.getSelected());
+		/*ExtraSelect q = new ExtraSelect(lst, n->n % 2 != 0);
+		q.add(n -> n%3 != 0);
+		q.add(n -> n%5 != 0);
+		System.out.println(q.getSelected());
+		*/
+	}
+}

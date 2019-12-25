@@ -1,0 +1,46 @@
+package assignment07;
+
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+import java.math.BigInteger;
+import java.util.stream.LongStream;
+
+public class P19_3 {
+
+	public static void main (String args[]){
+	//System.out.println(	prime(47));
+
+	try (PrintWriter output = new PrintWriter("test4.txt")) {
+	LongStream.iterate(1, i->i+1).filter(P19_3::prime).filter(P19_3::palindrome).limit(500).forEach(output::println);
+
+	
+	}catch(FileNotFoundException e){
+		
+	}
+
+	}
+	static boolean palindrome(long n){
+
+
+		StringBuilder pal = new StringBuilder("" + n);
+		return (""+n).equals(pal.reverse().toString());
+
+
+	}
+	static boolean prime(long n){
+
+		if(n <2) return false;
+		if(n ==2 || n==3) return true; 
+		
+		if(n % 2 == 0) return false;
+		if(n % 3 == 0) return false;
+		
+		long k = 1;
+		while(n >= (6*k-1)*(6*k-1)){
+			if(n % (6*k-1)==0 || n % (6*k+1) == 0) return false;
+			k++;
+		}
+		return true;
+	}
+	
+}

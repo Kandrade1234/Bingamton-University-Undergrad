@@ -1,0 +1,78 @@
+#include "AntHill.h"
+#include <iostream>
+#include <cstdlib>
+
+#define BUFFER_MAX 100
+
+using namespace std;
+
+
+
+AntHill::AntHill(){
+	ants = NULL;
+	this->current_ants = 0;
+	this->next_id = 0;
+}
+~AntHill::AntHill(){
+	for(int i =0; i < current_ants; i++){
+		delete ants[i];
+	}
+}
+int AntHill::addAnt(){
+
+
+		int size_growth = 1 + current_ants;
+		Ant ** nArr = new ** Ant [size_growth];
+		for(int i =0; i < current_ants; i++){
+			nArr [i] = ants[i];
+		}
+		Ant * obj = new Ant (next_id);
+		nArr[size_growth] = obj;
+		this->current_ants+=1;
+		delete [] ants;
+		ants = nArr;
+		this->next_id +=1;
+
+	return ants[current_ants]->getID();
+
+
+}
+Ant AntHill:: getAnt(int id){
+    int i =0;
+    while(i < max_ants){
+        if(ants[i].getID()== id)
+            break;
+        i++;
+    }
+    return ants[i];
+
+
+}
+void AntHill::move(){
+	for(int i =0; i < max_ants; i++){
+		ants[i].move();
+	}
+}
+
+bool AntHill::changeMax(int nMax){
+	if(nMax > 100 || nMax < 0){
+		return false;
+	}
+	else{
+		max_ants = nMax;
+		return true;
+	}
+}
+
+void AntHill::printHillInfo(){
+	for(int i =0; i < current_ants; i++){
+		cout <<"Ant #" << ants[i].getID() << " [" <<ants[i].getX()<<"," <<ants[i].getY() << "]\n";
+	}
+}
+int AntHill::getCurrentNumAnts(){
+	return this->current_ants;
+}
+int AntHill::getMaxAnts(){
+	return this->max_ants;
+
+}
