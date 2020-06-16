@@ -1,0 +1,234 @@
+commit 46a1de2f3cc579e15948f7a2ae5a4d718d93168f
+Author: Kevin Andrade <kandrad2@binghamton.edu>
+Date:   Fri Apr 5 23:53:36 2019 -0400
+
+    added a list class to store the lists and words and other minor bug fixes
+
+ .../java/com/example/myapplication/DataBase.java   | 237 +++++++++++++++++++++
+ .../example/myapplication/WordListActivity.java    |   7 +-
+ app/src/main/res/layout/activity_second.xml        | 130 +++++------
+ 3 files changed, 308 insertions(+), 66 deletions(-)
+
+commit f78b14637eaaa3bc086dc729ff234d87f91c8013
+Author: Kevin Andrade <kandrad2@binghamton.edu>
+Date:   Fri Apr 5 19:33:30 2019 -0400
+
+    added some colors and words to activity two
+
+ app/src/main/res/layout/activity_second.xml | 163 ++++++++++++++++------------
+ app/src/main/res/values/colors.xml          |   2 +
+ 2 files changed, 96 insertions(+), 69 deletions(-)
+
+commit b85f810da66c57f276755208dec0aa40ab1db816
+Author: Kevin Andrade <kandrad2@binghamton.edu>
+Date:   Fri Apr 5 18:57:59 2019 -0400
+
+    deleted green  action bar on top of Main Menu Screen
+
+ app/src/main/AndroidManifest.xml          | 3 ++-
+ app/src/main/res/layout/activity_main.xml | 9 ---------
+ 2 files changed, 2 insertions(+), 10 deletions(-)
+
+commit 7128763387449840aee4fda37fd45ca38ebdfa52
+Author: Kevin Andrade <kandrad2@binghamton.edu>
+Date:   Fri Apr 5 18:49:23 2019 -0400
+
+    fixed landscape mode
+
+ app/src/main/AndroidManifest.xml | 3 +++
+ 1 file changed, 3 insertions(+)
+
+commit 20c2dae88788763bd39cf06283480173226aae43
+Author: Kevin Andrade <kandrad2@binghamton.edu>
+Date:   Fri Apr 5 18:27:53 2019 -0400
+
+    Fixed version of Kindergarden app
+
+ List Words App.pptx                                | Bin
+ app/.gitignore                                     |   2 +-
+ app/build.gradle                                   |  57 +--
+ app/proguard-rules.pro                             |  42 +-
+ .../ExampleInstrumentedTest.java                   |  52 +--
+ app/src/main/AndroidManifest.xml                   |  66 ++--
+ .../com/example/cs441_program5/MainActivity.java   |  48 ---
+ .../AboutActivity.java                             |  62 ++-
+ .../ListActivity.java}                             | 425 ++++++++++-----------
+ .../com/example/myapplication/MainActivity.java    |  40 ++
+ .../WordListActivity.java}                         |  65 ++--
+ .../res/drawable-v24/ic_launcher_foreground.xml    |  68 ++--
+ app/src/main/res/drawable/home.png                 | Bin
+ .../main/res/drawable/ic_launcher_background.xml   | 340 ++++++++---------
+ app/src/main/res/drawable/info.png                 | Bin
+ app/src/main/res/drawable/{List1.png => list1.png} | Bin
+ .../main/res/drawable/{List10.png => list10.png}   | Bin
+ .../main/res/drawable/{List11.png => list11.png}   | Bin
+ .../main/res/drawable/{List12.png => list12.png}   | Bin
+ .../main/res/drawable/{List13.png => list13.png}   | Bin
+ .../main/res/drawable/{List14.png => list14.png}   | Bin
+ .../main/res/drawable/{List15.png => list15.png}   | Bin
+ app/src/main/res/drawable/{List2.png => list2.png} | Bin
+ app/src/main/res/drawable/{List3.png => list3.png} | Bin
+ app/src/main/res/drawable/{List4.png => list4.png} | Bin
+ app/src/main/res/drawable/{List5.png => list5.png} | Bin
+ app/src/main/res/drawable/{List6.png => list6.png} | Bin
+ app/src/main/res/drawable/{List7.png => list7.png} | Bin
+ app/src/main/res/drawable/{List8.png => list8.png} | Bin
+ app/src/main/res/drawable/{List9.png => list9.png} | Bin
+ app/src/main/res/drawable/mainbg.png               | Bin
+ app/src/main/res/drawable/next.png                 | Bin
+ app/src/main/res/layout/activity_about.xml         |  40 +-
+ app/src/main/res/layout/activity_main.xml          | 150 ++++----
+ .../layout/{activity_2.xml => activity_second.xml} | 360 ++++++++---------
+ .../{activity_list.xml => activity_word_list.xml}  |  38 +-
+ app/src/main/res/layout/content_about.xml          |  11 +
+ app/src/main/res/layout/content_second.xml         |  11 +
+ app/src/main/res/layout/content_word_list.xml      |  11 +
+ app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml |   8 +-
+ .../res/mipmap-anydpi-v26/ic_launcher_round.xml    |   8 +-
+ app/src/main/res/mipmap-hdpi/ic_launcher.png       | Bin
+ app/src/main/res/mipmap-hdpi/ic_launcher_round.png | Bin
+ app/src/main/res/mipmap-mdpi/ic_launcher.png       | Bin
+ app/src/main/res/mipmap-mdpi/ic_launcher_round.png | Bin
+ app/src/main/res/mipmap-xhdpi/ic_launcher.png      | Bin
+ .../main/res/mipmap-xhdpi/ic_launcher_round.png    | Bin
+ app/src/main/res/mipmap-xxhdpi/ic_launcher.png     | Bin
+ .../main/res/mipmap-xxhdpi/ic_launcher_round.png   | Bin
+ app/src/main/res/mipmap-xxxhdpi/ic_launcher.png    | Bin
+ .../main/res/mipmap-xxxhdpi/ic_launcher_round.png  | Bin
+ app/src/main/res/values/colors.xml                 |  12 +-
+ app/src/main/res/values/dimens.xml                 |   3 +
+ app/src/main/res/values/strings.xml                |   9 +-
+ app/src/main/res/values/styles.xml                 |  31 +-
+ .../ExampleUnitTest.java                           |  32 +-
+ build.gradle                                       |  54 +--
+ gradle.properties                                  |  30 +-
+ gradle/wrapper/gradle-wrapper.jar                  | Bin
+ gradle/wrapper/gradle-wrapper.properties           |  12 +-
+ gradlew                                            |   0
+ gradlew.bat                                        | 168 ++++----
+ settings.gradle                                    |   2 +-
+ 63 files changed, 1144 insertions(+), 1113 deletions(-)
+
+commit e1b6272d0112adf7b1b77425a225c9040dfa8cca
+Author: cglasheen86 <cglasheen86@gmail.com>
+Date:   Fri Apr 5 15:23:54 2019 -0400
+
+    added more activities
+
+ .idea/misc.xml                                     |   2 +-
+ app/src/main/AndroidManifest.xml                   |  20 ++-
+ .../com/example/cs441_program5/AboutActivity.java  |  34 ++++
+ .../com/example/cs441_program5/ListActivity.java   |  36 ++++
+ .../com/example/cs441_program5/MainActivity.java   |  20 ++-
+ .../com/example/cs441_program5/SecondActivity.java | 197 +++++++++++++++++++++
+ app/src/main/res/layout/activity_2.xml             | 174 +++++++++++++++++-
+ app/src/main/res/layout/activity_about.xml         |  20 +++
+ app/src/main/res/layout/activity_list.xml          |  20 +++
+ 9 files changed, 502 insertions(+), 21 deletions(-)
+
+commit 14597741024db9f2e091b9c1089ccfb99cfa0146
+Author: cglasheen86 <cglasheen86@gmail.com>
+Date:   Fri Apr 5 12:39:08 2019 -0400
+
+    Added button images
+
+ .idea/misc.xml                       |   2 +-
+ app/src/main/AndroidManifest.xml     |   2 ++
+ app/src/main/res/drawable/List1.png  | Bin 0 -> 856 bytes
+ app/src/main/res/drawable/List10.png | Bin 0 -> 1023 bytes
+ app/src/main/res/drawable/List11.png | Bin 0 -> 947 bytes
+ app/src/main/res/drawable/List12.png | Bin 0 -> 1002 bytes
+ app/src/main/res/drawable/List13.png | Bin 0 -> 1006 bytes
+ app/src/main/res/drawable/List14.png | Bin 0 -> 970 bytes
+ app/src/main/res/drawable/List15.png | Bin 0 -> 1027 bytes
+ app/src/main/res/drawable/List2.png  | Bin 0 -> 922 bytes
+ app/src/main/res/drawable/List3.png  | Bin 0 -> 911 bytes
+ app/src/main/res/drawable/List4.png  | Bin 0 -> 893 bytes
+ app/src/main/res/drawable/List5.png  | Bin 0 -> 937 bytes
+ app/src/main/res/drawable/List6.png  | Bin 0 -> 936 bytes
+ app/src/main/res/drawable/List7.png  | Bin 0 -> 907 bytes
+ app/src/main/res/drawable/List8.png  | Bin 0 -> 946 bytes
+ app/src/main/res/drawable/List9.png  | Bin 0 -> 940 bytes
+ 17 files changed, 3 insertions(+), 1 deletion(-)
+
+commit 73fb2b3e47a5d4edac0b9f2d1a5f9f9aabc01a53
+Author: cglasheen86 <cglasheen86@gmail.com>
+Date:   Thu Apr 4 00:38:22 2019 -0400
+
+    Added new activity
+
+ app/src/main/AndroidManifest.xml                     | 10 +++++++---
+ .../com/example/cs441_program5/MainActivity.java     | 14 ++++++++++++++
+ .../com/example/cs441_program5/SecondActivity.java   | 19 +++++++++++++++++++
+ app/src/main/res/layout/activity_2.xml               | 20 ++++++++++++++++++++
+ 4 files changed, 60 insertions(+), 3 deletions(-)
+
+commit 383922e3073d88883226cb77b90833a5ed9cdf46
+Author: cglasheen86 <cglasheen86@gmail.com>
+Date:   Wed Apr 3 23:45:09 2019 -0400
+
+    added powerpoint
+
+ List Words App.pptx | Bin 0 -> 10929892 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 162ae215a0fa6228dd3d84409cac88b4e15264ec
+Author: cglasheen86 <cglasheen86@gmail.com>
+Date:   Tue Apr 2 21:14:17 2019 -0400
+
+    fixed some stuff
+
+ app/src/main/res/drawable/{mainBG.png => mainbg.png} | Bin
+ app/src/main/res/layout/activity_main.xml            |  18 ++++++++++--------
+ app/src/main/res/values/styles.xml                   |   2 +-
+ 3 files changed, 11 insertions(+), 9 deletions(-)
+
+commit ff7538123416dfa2e4652b8d60f559038474d732
+Author: cglasheen86 <cglasheen86@gmail.com>
+Date:   Tue Apr 2 21:03:26 2019 -0400
+
+    made title screen
+
+ .gitignore                                         |  13 ++
+ .idea/codeStyles/Project.xml                       |  29 ++++
+ .idea/gradle.xml                                   |  15 ++
+ .idea/misc.xml                                     |   9 ++
+ .idea/runConfigurations.xml                        |  12 ++
+ .idea/vcs.xml                                      |   6 +
+ app/.gitignore                                     |   1 +
+ app/build.gradle                                   |  28 ++++
+ app/proguard-rules.pro                             |  21 +++
+ .../cs441_program5/ExampleInstrumentedTest.java    |  26 ++++
+ app/src/main/AndroidManifest.xml                   |  25 +++
+ .../com/example/cs441_program5/MainActivity.java   |  20 +++
+ .../res/drawable-v24/ic_launcher_foreground.xml    |  34 ++++
+ app/src/main/res/drawable/home.png                 | Bin 0 -> 4653 bytes
+ .../main/res/drawable/ic_launcher_background.xml   | 170 ++++++++++++++++++++
+ app/src/main/res/drawable/info.png                 | Bin 0 -> 2489 bytes
+ app/src/main/res/drawable/mainBG.png               | Bin 0 -> 19316 bytes
+ app/src/main/res/drawable/next.png                 | Bin 0 -> 938 bytes
+ app/src/main/res/layout/activity_main.xml          |  74 +++++++++
+ app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml |   5 +
+ .../res/mipmap-anydpi-v26/ic_launcher_round.xml    |   5 +
+ app/src/main/res/mipmap-hdpi/ic_launcher.png       | Bin 0 -> 2963 bytes
+ app/src/main/res/mipmap-hdpi/ic_launcher_round.png | Bin 0 -> 4905 bytes
+ app/src/main/res/mipmap-mdpi/ic_launcher.png       | Bin 0 -> 2060 bytes
+ app/src/main/res/mipmap-mdpi/ic_launcher_round.png | Bin 0 -> 2783 bytes
+ app/src/main/res/mipmap-xhdpi/ic_launcher.png      | Bin 0 -> 4490 bytes
+ .../main/res/mipmap-xhdpi/ic_launcher_round.png    | Bin 0 -> 6895 bytes
+ app/src/main/res/mipmap-xxhdpi/ic_launcher.png     | Bin 0 -> 6387 bytes
+ .../main/res/mipmap-xxhdpi/ic_launcher_round.png   | Bin 0 -> 10413 bytes
+ app/src/main/res/mipmap-xxxhdpi/ic_launcher.png    | Bin 0 -> 9128 bytes
+ .../main/res/mipmap-xxxhdpi/ic_launcher_round.png  | Bin 0 -> 15132 bytes
+ app/src/main/res/values/colors.xml                 |   6 +
+ app/src/main/res/values/strings.xml                |   3 +
+ app/src/main/res/values/styles.xml                 |  11 ++
+ .../example/cs441_program5/ExampleUnitTest.java    |  17 ++
+ build.gradle                                       |  27 ++++
+ gradle.properties                                  |  15 ++
+ gradle/wrapper/gradle-wrapper.jar                  | Bin 0 -> 54329 bytes
+ gradle/wrapper/gradle-wrapper.properties           |   6 +
+ gradlew                                            | 172 +++++++++++++++++++++
+ gradlew.bat                                        |  84 ++++++++++
+ settings.gradle                                    |   1 +
+ 42 files changed, 835 insertions(+)
